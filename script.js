@@ -19,10 +19,20 @@ window.addEventListener("load",function(){
             console.log('Nombre de cartes :', cards.length);
 
             // TIRAGE ALÉATOIRE:
+
+            // Garder en mémoire la précédente carte tirée : 
+            let currentCardIndex = null;
             // Au clic sur le bouton,
             drawBtn.addEventListener("click", ()=>{
-                // appeler drawRandomCard pour sortir une carte aléatoire
-                let randomCardImgUrl = drawRandomCard(cards);
+
+                // appeler drawRandomCard pour sortir une carte aléatoire : index et url
+                let drawObject = drawRandomCard(cards, currentCardIndex);
+
+                // - l'url pour afficher la carte,
+                let randomCardImgUrl = drawObject.imgUrl;
+                // - l'index pour mémoriser l'index de la carte courante
+                currentCardIndex = drawObject.newIndex;
+                
                 // et afficher la carte
                 cardView.innerHTML="<img src='./"+randomCardImgUrl+"'/>";
             });
@@ -31,14 +41,20 @@ window.addEventListener("load",function(){
 })
 
 // FONCTION DE TIRAGE ALÉATOIRE DANS LE DECK
-function drawRandomCard(cardsArray){
+function drawRandomCard(cardsArray, currentIndex){
 
     //Générer un index aléatoire dans les limites du nombre de cartes
     let nbOfCards = cardsArray.length;
     let randomIndex = Math.floor(Math.random() * nbOfCards);
     console.log("randomIndex :", randomIndex);
 
-    //Récupérer l'url de l'image de la carte tirée
-    let randomCardImgUrl = cardsArray[randomIndex].imgUrl
-    return randomCardImgUrl;
+    // Si le nouvel index est le même que celui de la carte courante,
+    if(randomIndex == currentIndex){
+        console.log("Doublon ! Je tire une autre carte");
+        // refaire un tirage
+        return drawRandomCard(cardsArray, currentIndex);
+    }else{
+        // Renvoyer le nouvel index et l'url de la carte
+        return {"newIndex":randomIndex, "imgUrl":cardsArray[randomIndex].imgUrl}
+    }
 }
