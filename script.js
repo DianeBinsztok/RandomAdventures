@@ -39,6 +39,6 @@ function drawRandomCard(cardsArray){
     console.log("randomIndex :", randomIndex);
 
     //Récupérer l'url de l'image de la carte tirée
-    let randomCardImgUrl = cardsArray[randomIndex].imgUrl
+    let randomCardImgUrl = cardsArray[randomIndex];
     return randomCardImgUrl;
 }
