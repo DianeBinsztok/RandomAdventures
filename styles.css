@@ -1,4 +1,57 @@
-#card-view img{
-    height: 100%;
+body{
+    background-color: antiquewhite;
+}
+header, footer{
+    background-color: rgb(6, 80, 80);
+    color: antiquewhite;
+}
+header{
+    font-size: 1em;
+    font-weight: bold;
+}
+body{
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    justify-content: space-between;
+}
+main{
+    flex: 1;
+    height:100%;
+    display: flex;
+	flex-direction: column;
+    align-items:center ;
+    padding-bottom: 2rem;
+}
+header, #navigation, #card-view, footer{
+    display: flex;
+    justify-content: center;
+}
+header, #navigation, footer{
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+#draw-button{
+    font-size: 1em;
+    padding: 1rem;
+    background-color: antiquewhite;
+    border: 1px solid rgb(6, 80, 80);
+    border-radius: 5px;
+}
+#draw-button:hover{
+    background-color: rgb(6, 80, 80);
+    color: antiquewhite;
+    font-weight: bold;
+}
+#card-view{
+    align-items: center;
+    height: 90%;
     max-width: 100%;
+}
+#card-view img{
+    height: 90vh;
+    max-width: 100%;
+    border-radius: 10px;
 }
