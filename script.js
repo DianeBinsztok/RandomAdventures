@@ -48,6 +48,16 @@ window.addEventListener("load",function(){
                     displayRandomCardOrMessage(cardView, newRandomCard);   
                 }
             });
+
+            // Version mobile : au swipe sur la carte(dans n'importe quel sens)
+            cardView.addEventListener('touchend', ()=>{
+
+                // Appeler drawRandomCard pour sortir une carte aléatoire                
+                let newRandomCard = drawRandomCardThenDiscardIt(cards);
+
+                // Afficher la carte (ou le message si le deck est vide)
+                displayRandomCardOrMessage(cardView, newRandomCard);
+            }, false); 
         })
     .catch(error => console.error(error));
 })
