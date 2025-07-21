@@ -25,12 +25,9 @@ window.addEventListener("load",function(){
                 // Appeler drawRandomCard pour sortir une carte aléatoire                
                 let newRandomCard = drawRandomCardThenDiscardIt(cards);
 
-                // S'il reste des cartes dans le deck, afficher une carte aléatoire
-                if(newRandomCard){
-                    cardView.innerHTML="<img src='./"+newRandomCard.imgUrl+"'/>";
-                }else{
-                    cardView.innerHTML="<p>Votre deck est vide !</p>";
-                }
+                // Afficher la carte (ou le message si le deck est vide)
+                displayRandomCardOrMessage(cardView, newRandomCard);
+
                 // Retirer le focus du bouton pour éviter son déclenchement au spacebar
                 drawBtn.blur();
             });
@@ -46,13 +43,9 @@ window.addEventListener("load",function(){
 
                     // Appeler drawRandomCard pour sortir une carte aléatoire                
                     let newRandomCard = drawRandomCardThenDiscardIt(cards);
-                    
-                    // S'il reste des cartes dans le deck, afficher une carte aléatoire
-                    if(newRandomCard){
-                        cardView.innerHTML="<img src='./"+newRandomCard.imgUrl+"'/>";
-                    }else{
-                        cardView.innerHTML="<p>Votre deck est vide !</p>";
-                    }                
+
+                    // Afficher la carte (ou le message si le deck est vide)
+                    displayRandomCardOrMessage(cardView, newRandomCard);   
                 }
             });
         })
@@ -60,7 +53,7 @@ window.addEventListener("load",function(){
 })
 
 // FONCTIONS
-// Tirage aléatoire au clic sur le bouton
+// Tirage aléatoire sans remise
 function drawRandomCardThenDiscardIt(cardsArray){
 
     // Si le deck comporte encore des cartes
@@ -81,14 +74,14 @@ function drawRandomCardThenDiscardIt(cardsArray){
     }
 }
 
-// Tirage aléatoire à la barre d'espace
-function drawRandomCardOnSpaceBar(event){
-    if (event.key == " " ||
-        event.code == "Space" ||      
-        event.keyCode == 32      
-    ) {
-        console.log("spacebar !");
+// Afficher la carte tirée s'il y en a une
+function displayRandomCardOrMessage(displayArea, cardToDisplay){
+    // Afficher la carte, s'il en a une
+    if(cardToDisplay){
+        displayArea.innerHTML="<img src='./"+cardToDisplay.imgUrl+"'/>";
+                
+    // Sinon, afficher un message
     }else{
-        console.log("other key !");
+        displayArea.innerHTML="<p>Votre deck est vide !</p>";
     }
 }
