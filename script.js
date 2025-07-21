@@ -16,25 +16,21 @@ window.addEventListener("load",function(){
         })
         .then(cards => {
             console.log('Cartes chargées :', cards);
-            console.log('Nombre de cartes :', cards.length);
 
             // TIRAGE ALÉATOIRE:
 
-            // Garder en mémoire la précédente carte tirée : 
-            let currentCardIndex = null;
             // Au clic sur le bouton,
             drawBtn.addEventListener("click", ()=>{
 
-                // appeler drawRandomCard pour sortir une carte aléatoire : index et url
-                let drawObject = drawRandomCard(cards, currentCardIndex);
+                // Appeler drawRandomCard pour sortir une carte aléatoire                
+                let newRandomCardUrl = drawRandomCardNoDouble(cards);
 
-                // - l'url pour afficher la carte,
-                let randomCardImgUrl = drawObject.imgUrl;
-                // - l'index pour mémoriser l'index de la carte courante
-                currentCardIndex = drawObject.newIndex;
-                
-                // et afficher la carte
-                cardView.innerHTML="<img src='./"+randomCardImgUrl+"'/>";
+                // S'il reste des cartes dans le deck, afficher une carte aléatoire
+                if(newRandomCardUrl){
+                    cardView.innerHTML="<img src='./"+newRandomCardUrl.imgUrl+"'/>";
+                }else{
+                    cardView.innerHTML="<p>Votre deck est vide !</p>";
+                }
             });
         })
     .catch(error => console.error(error));
@@ -57,4 +53,26 @@ function drawRandomCard(cardsArray, currentIndex){
         // Renvoyer le nouvel index et l'url de la carte
         return {"newIndex":randomIndex, "imgUrl":cardsArray[randomIndex].imgUrl}
     }
+}
+
+// FONCTION DE TIRAGE ALÉATOIRE DANS LE DECK - SANS REMISE
+// S'il reste des cartes dans le deck, newRandomCardUrl renvoie une carte, sinon, la fonction renvoie null
+function drawRandomCardNoDouble(cardsArray){
+
+    if(cardsArray.length>0){
+        //Générer un index aléatoire dans les limites du nombre de cartes du deck
+        let nbOfCards = cardsArray.length;
+        let randomIndex = Math.floor(Math.random() * nbOfCards);
+        console.log("randomIndex :", randomIndex);
+        
+        let newRandomCard = cardsArray[randomIndex];
+        console.log("newRandomCard: ", newRandomCard);
+
+        cardsArray.splice(randomIndex, 1);
+        console.log("cardsArray après suppression : ", cardsArray);
+        return newRandomCard;
+    }else{
+        return null;
+    }
+
 }
