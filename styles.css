@@ -25,7 +25,7 @@ main{
     align-items:center ;
     padding-bottom: 2rem;
 }
-header, #navigation, #card-view, footer{
+header, #navigation, footer{
     display: flex;
     justify-content: center;
 }
@@ -33,14 +33,14 @@ header, #navigation, footer{
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
-#draw-button{
+#draw-button, #keep-in-deck{
     font-size: 1em;
     padding: 1rem;
     background-color: antiquewhite;
     border: 1px solid rgb(6, 80, 80);
     border-radius: 5px;
 }
-#draw-button:hover{
+#draw-button:hover, #keep-in-deck.active{
     background-color: rgb(6, 80, 80);
     color: antiquewhite;
     font-weight: bold;
@@ -54,4 +54,7 @@ header, #navigation, footer{
     height: 90vh;
     max-width: 100%;
     border-radius: 10px;
+}
+.hide{
+    display: none;
 }
