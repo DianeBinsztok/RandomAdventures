@@ -1,7 +1,7 @@
 /* ======= VARIABLES DE MODULE ======= */
 
 // Élément d'interface : Les boutons et le tapis
-let drawBtn, keepBtn, resetBtn, cardView;
+let keepBtn, resetBtn, cardView;
 
 // Une zone plus large pour tirer au swipe sur un écran tactile
 let main;
@@ -29,8 +29,6 @@ function init(){
     /* I - VALEURS DE DÉPART */
 
     /* Les boutons */
-    // - Tirer une nouvelle carte
-    drawBtn = document.querySelector("#draw-button");
     // - Garder la carte dans le deck
     keepBtn = document.querySelector("#keep-in-deck");
     // - Rejouer
@@ -60,7 +58,7 @@ function init(){
             setEventListeners();
 
             // Affichage
-            handleDisplay(deck, currentCard, keepBtn, drawBtn, resetBtn, cardView);
+            handleDisplay(deck, cardView, currentCard, keepBtn, resetBtn);
 
         })
     .catch(error => console.error(error));
@@ -72,7 +70,7 @@ function setEventListeners(){
 
     // TIRAGE ALÉATOIRE:
     // - Au clic sur le bouton,
-    drawBtn.addEventListener("click", draw);
+    cardView.addEventListener("click", draw);
 
     // - Au clic sur la barre d'espace
     window.addEventListener("keydown", (event)=>{
@@ -109,7 +107,7 @@ function draw(){
         currentCard = drawNewRandomCard(deck);
     }
     // Affichage
-    handleDisplay(deck, currentCard, keepBtn, drawBtn, resetBtn, cardView);
+    handleDisplay(deck, cardView, currentCard, keepBtn, resetBtn);
 
     // Remettre keep à false pour le tirage suivant
     keep = false;
@@ -143,16 +141,15 @@ function discardOrKeepPreviousCard(deck, previousCard, keep){
 }
 
 // AFFICHAGE DES BOUTONS ET DE LA CARTE COURANTE - OU DU MESSAGE
-function handleDisplay(deck, currentCard, keepButton, drawButton, resetButton, displayZone){
+function handleDisplay(deck, displayZone, currentCard, keepButton, resetButton){
     // I - DÉBUT : LE DECK EST PLEIN MAIS PAS DE CARTE COURANTE 
     if(deck.length>0 && !currentCard){
 
         // L'affichage du tapis
-        displayZone.innerHTML = "<h2>Votre carte s'affichera ici</h2>";
+        displayZone.innerHTML = '<img src="./assets/img/back.png" alt="Cliquez pour tirer une carte">';
 
         // Les boutons
         keepButton.classList.add("hide");
-        drawButton.classList.remove("hide");
         resetButton.classList.add("hide");
     }
     
@@ -164,7 +161,6 @@ function handleDisplay(deck, currentCard, keepButton, drawButton, resetButton, d
 
         // Les boutons
         keepButton.classList.remove("hide");
-        drawButton.classList.remove("hide");
     }
 
     // III - LE DECK EST VIDE
@@ -175,7 +171,6 @@ function handleDisplay(deck, currentCard, keepButton, drawButton, resetButton, d
 
         // Les boutons
         keepButton.classList.add("hide");
-        drawButton.classList.add("hide");
         resetButton.classList.remove("hide");
     }
 
@@ -183,7 +178,7 @@ function handleDisplay(deck, currentCard, keepButton, drawButton, resetButton, d
     keepButton.classList.remove("active");
 
     // Retirer le focus des boutons pour éviter son déclenchement au spacebar
-    drawButton.blur();
+    displayZone.blur();
     keepButton.blur();
 }
 
@@ -191,5 +186,5 @@ function handleDisplay(deck, currentCard, keepButton, drawButton, resetButton, d
 function resetGame() {
     deck = [...cards];
     currentCard = null;
-    handleDisplay(deck, currentCard, keepBtn, drawBtn, resetBtn, cardView);
+    handleDisplay(deck, cardView, currentCard, keepBtn, resetBtn);
 }

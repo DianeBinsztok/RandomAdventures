@@ -1,59 +1,69 @@
+html{height: 100%;
+    margin: 0;
+    padding: 0;}
 body{
     background-color: antiquewhite;
+	display: flex;
+    height: 100dvh;
+	flex-direction: column;
+    margin: 0;
+    padding: 0;
+    justify-content: space-between;
 }
 header, footer{
-    background-color: rgb(6, 80, 80);
+    flex: 0 0 auto; /* taille fixe (pas d'étirement) */
+    background-color: rgb(6, 59, 80);
     color: antiquewhite;
 }
 header{
     font-size: 1em;
     font-weight: bold;
 }
-body{
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    justify-content: space-between;
-}
 main{
-    flex: 1;
+    flex: 1 1 auto; /* le reste de l'espace est pour le main */
+    box-sizing: border-box;
     height:100%;
+    width: 100%;
     display: flex;
 	flex-direction: column;
     align-items:center ;
-    padding-bottom: 2rem;
 }
-header, #navigation, footer{
+header, #baize, footer{
     display: flex;
     justify-content: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
-header, #navigation, footer{
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-}
-#draw-button, #keep-in-deck, #reset-deck{
+
+#keep-in-deck, #reset-deck{
     font-size: 1em;
     padding: 1rem;
     background-color: antiquewhite;
-    border: 1px solid rgb(6, 80, 80);
+    border: 1px solid rgb(6, 59, 80);
     border-radius: 5px;
 }
-#draw-button:hover, #keep-in-deck.active, #reset-deck:hover{
-    background-color: rgb(6, 80, 80);
+#keep-in-deck.active, #reset-deck:hover{
+    background-color: rgb(6, 59, 80);
     color: antiquewhite;
     font-weight: bold;
 }
 #card-view{
+    box-sizing: border-box;
+    display: flex;
     align-items: center;
-    height: 90%;
-    max-width: 100%;
+    justify-content: center;
+    max-height: 62vh; 
+    width: 100%;
+    padding: 0.7rem;
+
 }
 #card-view img{
-    height: 90vh;
-    max-width: 100%;
+    box-sizing: border-box;
+    height: 100%;
+    max-width: 90%;
+    object-fit: contain;
     border-radius: 10px;
+    mix-blend-mode: multiply;
 }
 .hide{
     display: none;
