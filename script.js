@@ -146,7 +146,7 @@ function handleDisplay(deck, displayZone, currentCard, keepButton, resetButton){
     if(deck.length>0 && !currentCard){
 
         // L'affichage du tapis
-        displayZone.innerHTML = '<img src="./assets/img/back.png" alt="Cliquez pour tirer une carte">';
+        displayZone.innerHTML = '<h2>Cliquez sur le deck tour tirer une carte</h2><img src="./assets/img/back.png" alt="Cliquez pour tirer une carte">';
 
         // Les boutons
         keepButton.classList.add("hide");
