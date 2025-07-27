@@ -2,51 +2,61 @@
     {
         "id":0,
         "series":"",
+        "title":"La Meute du Chien Bleu",
         "imgUrl":"assets/img/cards/IMG_2652.JPG"
     },
     {
         "id":1,
         "series":"",
+        "title":"Yak-So, guide et chamane",
         "imgUrl":"assets/img/cards/IMG_2653.JPG"
     },
     {
         "id":2,
         "series":"",
+        "title":"Chauves-souris écarlates",
         "imgUrl":"assets/img/cards/IMG_2654.JPG"
     },
     {
         "id":3,
         "series":"",
+        "title":"Le démon Terraxus",
         "imgUrl":"assets/img/cards/IMG_2655.JPG"
     },
     {
         "id":4,
         "series":"",
+        "title":"Dulcinia la mule",
         "imgUrl":"assets/img/cards/IMG_2656.JPG"
     },
     {
         "id":5,
         "series":"",
+        "title":"Le sorcier du givre",
         "imgUrl":"assets/img/cards/IMG_2657.JPG"
     },
     {
         "id":6,
         "series":"",
+        "title":"Bandits, bandits",
         "imgUrl":"assets/img/cards/IMG_2658.JPG"
     },
     {
         "id":7,
         "series":"",
+        "title":"Antipape, anti-tout",
         "imgUrl":"assets/img/cards/IMG_2660.JPG"
     },
     {
         "id":8,
         "series":"",
+        "title":"Bazar bizarre",
         "imgUrl":"assets/img/cards/IMG_2661.JPG"
     },
     {
         "id":9,
         "series":"",
+        "title":"Ce soir dans votre ville!",
         "imgUrl":"assets/img/cards/IMG_2662.JPG"
     }
 ]

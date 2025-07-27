@@ -1,15 +1,20 @@
 /* ======= VARIABLES DE MODULE ======= */
 
-// Élément d'interface : Les boutons et le tapis
+// Élément d'interface : Les boutons,la vue de la carte courante et le tapis
 let keepBtn, resetBtn, cardView;
 
 // Une zone plus large pour tirer au swipe sur un écran tactile
 let main;
 
+/* CHARGEMENT DES CARTES AU DÉBUT */
 // Les cartes récupérées après un fetch
 let cards = [];
-// La pioche
+// La pioche utilisée pendant le jeu
 let deck = [];
+
+// Les cartes gardées
+let baize =[];
+
 
 // La carte courante : aucune carte n'est affichée au lancement du jeu
 let currentCard = null;
@@ -34,7 +39,9 @@ function init(){
     // - Rejouer
     resetBtn = document.querySelector("#reset-deck");
 
-    /* Le tapis */        
+    /* LE TAPIS */   
+
+    /* La carte tirées */
     cardView = document.querySelector("#card-view");
     /* Prendre une zone plus large pour tirer les cartes au swipe sur écrans tactiles*/
     main = document.querySelector("main");
@@ -84,12 +91,14 @@ function setEventListeners(){
     });
 
     // - Version mobile : au swipe sur la carte(dans n'importe quel sens)
-    main.addEventListener('touchend', draw, false); 
+    cardView.addEventListener('touchend', draw, false); 
 
     // BOUTON KEEP - VARIABLE KEEP : GARDER LA CARTE COURANTE OU NON
     keepBtn.addEventListener("click", ()=>{
         keepBtn.classList.toggle("active");
         keep = keepBtn.classList.contains("active");
+        keepCurrentCardOnBaize(currentCard, baize);
+        draw();
     })
 
     // BOUTON RESET : RÉAFFECTER LE TABLEAU DECK POUR RELANCER LA PARTIE
@@ -134,8 +143,8 @@ function drawNewRandomCard(cardsArray){
 }
 
 // DÉFAUSSER OU GARDER LA CARTE PRÉCÉDENTE
-function discardOrKeepPreviousCard(deck, previousCard, keep){
-    if(previousCard && deck.indexOf(previousCard)!=-1 && !keep){
+function discardOrKeepPreviousCard(deck, previousCard){
+    if(previousCard && deck.indexOf(previousCard)!=-1){
         deck.splice(deck.indexOf(previousCard), 1);
     }
 }
@@ -185,6 +194,17 @@ function handleDisplay(deck, displayZone, currentCard, keepButton, resetButton){
 // RESET
 function resetGame() {
     deck = [...cards];
+    baize = [];
     currentCard = null;
     handleDisplay(deck, cardView, currentCard, keepBtn, resetBtn);
+}
+
+// AJOUTER UNE CARTE AU TAPIS DE RÉSERVE
+function keepCurrentCardOnBaize(currentCard, baize){
+    console.log("keepCurrentCardOnBaize");
+
+    if(baize.length<3  && !baize.includes(currentCard)){
+        baize.push(currentCard);
+    }
+    console.log("baize:", baize);
 }
