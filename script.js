@@ -1,7 +1,7 @@
 /* ======= VARIABLES DE MODULE ======= */
 
 // Élément d'interface : Les boutons,la vue de la carte courante et le tapis
-let keepBtn, resetBtn, cardView;
+let keepBtn, resetBtn, cardView, baizeView;
 
 // Une zone plus large pour tirer au swipe sur un écran tactile
 let main;
@@ -40,7 +40,7 @@ function init(){
     resetBtn = document.querySelector("#reset-deck");
 
     /* LE TAPIS */   
-
+    baizeView = document.querySelector("#baize-list");
     /* La carte tirées */
     cardView = document.querySelector("#card-view");
     /* Prendre une zone plus large pour tirer les cartes au swipe sur écrans tactiles*/
@@ -90,8 +90,12 @@ function setEventListeners(){
         }
     });
 
-    // - Version mobile : au swipe sur la carte(dans n'importe quel sens)
-    cardView.addEventListener('touchend', draw, false); 
+    // - Version mobile : au toucher ou au swipe sur la carte(dans n'importe quel sens)
+    cardView.addEventListener('touchend', (event)=>{
+        // Empêcher que l'event 'touchend' déclenche également l'event 'click'
+        event.preventDefault();
+        draw();
+    }, false); 
 
     // BOUTON KEEP - VARIABLE KEEP : GARDER LA CARTE COURANTE OU NON
     keepBtn.addEventListener("click", ()=>{
@@ -107,10 +111,11 @@ function setEventListeners(){
 
 // TIRAGE DE CARTE (RASSEMBLE TOUTES LES FONCTIONS DE TIRAGE)
 function draw(){
-
     if(deck.length>0){         
         // Défausser la carte précédente s'il y en a une et que le mode 'keep' n'est pas sélectionné
-        discardOrKeepPreviousCard(deck, currentCard, keep);
+        if(currentCard){
+            discardOrKeepPreviousCard(deck, currentCard, keep);
+        }
 
         // Tirer une nouvelle carte
         currentCard = drawNewRandomCard(deck);
@@ -144,6 +149,8 @@ function drawNewRandomCard(cardsArray){
 
 // DÉFAUSSER OU GARDER LA CARTE PRÉCÉDENTE
 function discardOrKeepPreviousCard(deck, previousCard){
+    console.log("discardOrKeepPreviousCard");
+
     if(previousCard && deck.indexOf(previousCard)!=-1){
         deck.splice(deck.indexOf(previousCard), 1);
     }
@@ -191,20 +198,33 @@ function handleDisplay(deck, displayZone, currentCard, keepButton, resetButton){
     keepButton.blur();
 }
 
+// AJOUTER UNE CARTE AU TAPIS DE RÉSERVE
+function keepCurrentCardOnBaize(currentCard, baize){
+    if(baize.length<3  && !baize.includes(currentCard)){
+        baize.push(currentCard);
+        displayCardsOnBaize(currentCard)
+    }
+}
+
+// AFFICHER LES CARTES GARDÉES
+function displayCardsOnBaize(card){
+
+        // Créer un nouveau node de liste
+        let newCardItem = document.createElement("li");
+
+        // qui affiche le titre et l'illustration de la carte
+        let newCardItemContent = document.createTextNode(card.title);
+
+        newCardItem.appendChild(newCardItemContent);
+
+        // Et l'insérer à la liste
+        baizeView.appendChild(newCardItem);
+}
+
 // RESET
 function resetGame() {
     deck = [...cards];
     baize = [];
     currentCard = null;
     handleDisplay(deck, cardView, currentCard, keepBtn, resetBtn);
-}
-
-// AJOUTER UNE CARTE AU TAPIS DE RÉSERVE
-function keepCurrentCardOnBaize(currentCard, baize){
-    console.log("keepCurrentCardOnBaize");
-
-    if(baize.length<3  && !baize.includes(currentCard)){
-        baize.push(currentCard);
-    }
-    console.log("baize:", baize);
 }

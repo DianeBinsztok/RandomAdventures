@@ -45,6 +45,32 @@ footer a{
     display: inline;
     color: antiquewhite;
 }
+#baize{
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+#baize-list{
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#baize-list li{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
 #keep-in-deck, #reset-deck{
     font-size: 1em;
     padding: 0.7rem;
@@ -82,11 +108,19 @@ footer a{
 .hide{
     display: none;
 }
+
+
 body{
     background-color: blueviolet;
 }
 main{
     background-color: red;  
+}
+#baize{
+    background-color: orange;  
+}
+#baize-list{
+    background-color: green;
 }
 #card-view{
     background-color: yellow;
