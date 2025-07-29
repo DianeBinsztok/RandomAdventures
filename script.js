@@ -91,8 +91,8 @@ function setEventListeners(){
     });
 
     // - Version mobile : au toucher ou au swipe sur la carte(dans n'importe quel sens)
-    cardView.addEventListener('touchend', (event)=>{
-        // Empêcher que l'event 'touchend' déclenche également l'event 'click'
+    cardView.addEventListener('touch', (event)=>{
+        // Empêcher que l'event 'touch' déclenche également l'event 'click'
         event.preventDefault();
         draw();
     }, false); 
@@ -202,7 +202,7 @@ function handleDisplay(deck, displayZone, currentCard, keepButton, resetButton){
 function keepCurrentCardOnBaize(currentCard, baize){
     if(baize.length<3  && !baize.includes(currentCard)){
         baize.push(currentCard);
-        displayCardsOnBaize(currentCard)
+        displayCardsOnBaize(currentCard);
     }
 }
 
@@ -212,10 +212,21 @@ function displayCardsOnBaize(card){
         // Créer un nouveau node de liste
         let newCardItem = document.createElement("li");
 
-        // qui affiche le titre et l'illustration de la carte
-        let newCardItemContent = document.createTextNode(card.title);
+        // Un paragraphe
+        let newCardItemParagraph = document.createElement("p");
+        // Le paragraphe contient le titre de la carte
+        newCardItemParagraph.innerText = card.title;
+        //let newCardItemContent = document.createTextNode(card.title);
 
-        newCardItem.appendChild(newCardItemContent);
+        // Une image
+        let newCardItemImg = document.createElement("img");
+        // L'image contient l'image de la carte
+        newCardItemImg.setAttribute('src', card.imgUrl);
+
+        // Et tout insérer dans l'item de liste
+        newCardItem.appendChild(newCardItemParagraph);
+        newCardItem.appendChild(newCardItemImg);
+
 
         // Et l'insérer à la liste
         baizeView.appendChild(newCardItem);

@@ -1,12 +1,13 @@
+/*I - GÉNÉRAL*/
 html{
     height: 100%;
     margin: 0;
     padding: 0;
 }
 body{
+    box-sizing: border-box;
     background-color: antiquewhite;
 	display: flex;
-    height: 100dvh;
 	flex-direction: column;
     margin: 0;
     padding: 0;
@@ -57,18 +58,19 @@ footer a{
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    /*justify-content: center;*/
 }
 #baize-list li{
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     list-style-type: none;
     text-align: center;
-    width: 100%;
+    width: 30%;
     height: 100%;
+    padding: 5px;
 }
 
 #keep-in-deck, #reset-deck{
@@ -89,7 +91,7 @@ footer a{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    max-height: 62vh; 
+    /*max-height: 62vh; */
     width: 100%;
     padding: 0.7rem;
 }
@@ -109,7 +111,33 @@ footer a{
     display: none;
 }
 
+/*II - MEDIA QUERIES*/
 
+/*1 - MOBILES VERTICAUX*/
+@media only screen and (max-width: 430px) {
+    #baize-list li img{
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+/*2 - AUTRES*/
+@media only screen and (min-width : 430px) {
+    body{
+        height: 100dvh;
+    }
+    #baize-list{
+        justify-content: center;
+    }
+    #baize-list li img{
+        max-width: 30%;
+    }
+    #card-view{
+        max-height: 62dvh;
+    }
+}
+/*
 body{
     background-color: blueviolet;
 }
@@ -125,4 +153,5 @@ main{
 #card-view{
     background-color: yellow;
 }
+*/
 
