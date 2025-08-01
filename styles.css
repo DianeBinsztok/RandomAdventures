@@ -6,6 +6,7 @@ html{
 }
 body{
     box-sizing: border-box;
+    height: 100dvh;
     background-color: antiquewhite;
 	display: flex;
 	flex-direction: column;
@@ -13,8 +14,8 @@ body{
     padding: 0;
     justify-content: space-between;
 }
+
 header, footer{
-    flex: 0 0 auto; /* taille fixe (pas d'étirement) */
     background-color: rgb(6, 59, 80);
     color: antiquewhite;
 }
@@ -23,7 +24,6 @@ header{
     font-weight: bold;
 }
 main{
-    flex: 1 1 auto; /* le reste de l'espace est pour le main */
     box-sizing: border-box;
     height:100%;
     width: 100%;
@@ -32,7 +32,6 @@ main{
     align-items:center;
     justify-content: center;
     padding: 1rem;
-
 }
 header, footer{
     display: flex;
@@ -47,18 +46,22 @@ footer a{
     color: antiquewhite;
 }
 #baize{
+    height: 25%;
+    width: 100%;
     box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    padding:1rem;
+    background-color: green;
 }
 #baize-list{
     box-sizing: border-box;
-    width: 100%;
     display: flex;
     align-items: center;
-    /*justify-content: center;*/
+    justify-content: center;
+    height: 100%;
+    padding:1rem;
 }
 #baize-list li{
     box-sizing: border-box;
@@ -68,11 +71,18 @@ footer a{
     justify-content: space-between;
     list-style-type: none;
     text-align: center;
-    width: 30%;
     height: 100%;
-    padding: 5px;
+    width: 100%;
+    background-color:red;
 }
-
+#baize-list li p{
+    box-sizing: border-box;
+}
+#baize-list li img{
+    box-sizing: border-box;
+    max-height: 90%;
+    width: auto;
+}
 #keep-in-deck, #reset-deck{
     font-size: 1em;
     padding: 0.7rem;
@@ -91,7 +101,7 @@ footer a{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /*max-height: 62vh; */
+    height:75%;
     width: 100%;
     padding: 0.7rem;
 }
@@ -110,33 +120,21 @@ footer a{
 .hide{
     display: none;
 }
-
+#card-view.selected img{
+    scale: 1.05;
+    border: 5px solid yellowgreen;
+}
 /*II - MEDIA QUERIES*/
 
 /*1 - MOBILES VERTICAUX*/
 @media only screen and (max-width: 430px) {
-    #baize-list li img{
-        width: 100%;
-        height: 100%;
-    }
 }
 
 
 /*2 - AUTRES*/
 @media only screen and (min-width : 430px) {
-    body{
-        height: 100dvh;
-    }
-    #baize-list{
-        justify-content: center;
-    }
-    #baize-list li img{
-        max-width: 30%;
-    }
-    #card-view{
-        max-height: 62dvh;
-    }
 }
+
 /*
 body{
     background-color: blueviolet;

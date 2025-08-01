@@ -1,7 +1,7 @@
 /* ======= VARIABLES DE MODULE ======= */
 
 // Élément d'interface : Les boutons,la vue de la carte courante et le tapis
-let keepBtn, resetBtn, cardView, baizeView;
+let keepBtn, resetBtn, cardView, card, baizeView;
 
 // Une zone plus large pour tirer au swipe sur un écran tactile
 let main;
@@ -43,6 +43,8 @@ function init(){
     baizeView = document.querySelector("#baize-list");
     /* La carte tirées */
     cardView = document.querySelector("#card-view");
+    
+
     /* Prendre une zone plus large pour tirer les cartes au swipe sur écrans tactiles*/
     main = document.querySelector("main");
 
@@ -107,6 +109,73 @@ function setEventListeners(){
 
     // BOUTON RESET : RÉAFFECTER LE TABLEAU DECK POUR RELANCER LA PARTIE
     resetBtn.addEventListener("click", resetGame);
+
+    // EVENTLISTENER POUR LE SWIPE SUR UNE CARTE
+    dragAndDropCardToBaize();
+}
+
+function dragAndDropCardToBaize(){
+    let cardSelected = false;
+    let fingerMove = false;
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let longPressTimer = null;
+
+    // Sélectionner la carte : détecter un appui long
+    cardView.addEventListener('touchstart', function(event) {
+        console.log("touchstart");
+
+        fingerMove = false;
+
+        // Mesurer le déplacement
+        const touch = event.touches[0];
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+
+        // Démarrer le timer pour l'appui long
+        longPressTimer = window.setTimeout(() => {
+            // Si le doigt ne bouge pas
+            if (!fingerMove) {
+                // Au bout de 500ms, sélectionner la carte
+                cardSelected = true;
+                cardView.classList.add("selected");
+                console.log("Appui long sans mouvement → carte sélectionnée");
+            }
+        }, 500);
+    }, false);
+
+    // Détecter le swipe
+    cardView.addEventListener('touchmove', function(event) {
+        // Si la carte est sélectionnée, éviter le scroll et détecter le mouvement
+        if(cardSelected){
+            // Éviter le scroll sur la page
+            event.preventDefault();
+
+            // Mesurer le déplacement
+            const touch = event.touches[0];
+            const deltaX = Math.abs(touch.clientX - touchStartX);
+            const deltaY = Math.abs(touch.clientY - touchStartY);
+
+            // Si le déplacement dépasse les 10px, considérer comme un swipe sur la carte
+            if (deltaX > 10 || deltaY > 10) {
+                fingerMove = true;
+                console.log("Carte sélectionnée & mouvement → drag");
+                keepCurrentCardOnBaize(currentCard, baize);
+                draw();
+                // annuler l'appui long
+                window.clearTimeout(longPressTimer); 
+            }
+        }
+    }, false);
+
+    // Fin du contact
+    cardView.addEventListener('touchend', function(event) {
+        fingerMove = false;
+        cardSelected = false;
+        // annuler appui long si relâché avant
+        window.clearTimeout(longPressTimer); 
+        cardView.classList.remove("selected");
+    }, false);
 }
 
 // TIRAGE DE CARTE (RASSEMBLE TOUTES LES FONCTIONS DE TIRAGE)
@@ -149,8 +218,6 @@ function drawNewRandomCard(cardsArray){
 
 // DÉFAUSSER OU GARDER LA CARTE PRÉCÉDENTE
 function discardOrKeepPreviousCard(deck, previousCard){
-    console.log("discardOrKeepPreviousCard");
-
     if(previousCard && deck.indexOf(previousCard)!=-1){
         deck.splice(deck.indexOf(previousCard), 1);
     }
@@ -202,12 +269,12 @@ function handleDisplay(deck, displayZone, currentCard, keepButton, resetButton){
 function keepCurrentCardOnBaize(currentCard, baize){
     if(baize.length<3  && !baize.includes(currentCard)){
         baize.push(currentCard);
-        displayCardsOnBaize(currentCard);
+        displayCardOnBaize(currentCard);
     }
 }
 
 // AFFICHER LES CARTES GARDÉES
-function displayCardsOnBaize(card){
+function displayCardOnBaize(card){
 
         // Créer un nouveau node de liste
         let newCardItem = document.createElement("li");
@@ -216,7 +283,6 @@ function displayCardsOnBaize(card){
         let newCardItemParagraph = document.createElement("p");
         // Le paragraphe contient le titre de la carte
         newCardItemParagraph.innerText = card.title;
-        //let newCardItemContent = document.createTextNode(card.title);
 
         // Une image
         let newCardItemImg = document.createElement("img");
@@ -236,6 +302,7 @@ function displayCardsOnBaize(card){
 function resetGame() {
     deck = [...cards];
     baize = [];
+    baizeView.innerHTML = "";
     currentCard = null;
     handleDisplay(deck, cardView, currentCard, keepBtn, resetBtn);
 }
