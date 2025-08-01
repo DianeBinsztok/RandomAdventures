@@ -105,10 +105,41 @@ function setEventListeners(){
 function draw(){
     console.log("draw");
     currentCard = drawNewRandomCard(deck);
-    handleDisplay(deck, cardView, currentCard, keepBtn, resetBtn);
+    handleDisplay();
+}
+// TIRAGE ALÉATOIRE : RENVOIE UNE CARTE DU DECK
+function drawNewRandomCard(cardsArray){
+
+    // Si le deck comporte encore des cartes
+    if(cardsArray.length>0){
+
+        // Générer un index aléatoire dans les limites du nombre de cartes du deck
+        let nbOfCards = cardsArray.length;
+        let randomIndex = Math.floor(Math.random() * nbOfCards);
+
+        // Tirer la carte à l'index généré
+        let newRandomCard = cardsArray[randomIndex];
+
+        return newRandomCard;
+    }else{
+        // Si le deck est vide, on ne renvoie rien
+        return null;
+    }
+}
+// DÉFAUSSER LA CARTE COURANTE
+function discardCurrentCard(){
+    if(currentCard && deck.indexOf(currentCard)!=-1){
+        deck.splice(deck.indexOf(currentCard), 1);
+        currentCard=null;
+        handleDisplay();
+    }
+}
+// AJOUTER LA CARTE COURANTE AU TAPIS DE RÉSERVE
+function keepCurrentCardOnBaize(){
+    console.log("keepCurrentCardOnBaize");
 }
 // AFFICHAGE DES BOUTONS ET DE LA CARTE COURANTE - OU DU MESSAGE
-function handleDisplay(deck, cardView, currentCard, keepBtn, resetBtn){
+function handleDisplay(){
     // I - DÉBUT : LE DECK EST PLEIN MAIS PAS DE CARTE COURANTE 
     if(deck.length>0 && !currentCard){
 
@@ -151,33 +182,6 @@ function handleDisplay(deck, cardView, currentCard, keepBtn, resetBtn){
     cardView.blur();
     discardBtn.blur();
     keepBtn.blur();
-}
-// TIRAGE ALÉATOIRE : RENVOIE UNE CARTE DU DECK
-function drawNewRandomCard(cardsArray){
-
-    // Si le deck comporte encore des cartes
-    if(cardsArray.length>0){
-
-        // Générer un index aléatoire dans les limites du nombre de cartes du deck
-        let nbOfCards = cardsArray.length;
-        let randomIndex = Math.floor(Math.random() * nbOfCards);
-
-        // Tirer la carte à l'index généré
-        let newRandomCard = cardsArray[randomIndex];
-
-        return newRandomCard;
-    }else{
-        // Si le deck est vide, on ne renvoie rien
-        return null;
-    }
-}
-// AJOUTER LA CARTE COURANTE AU TAPIS DE RÉSERVE
-function keepCurrentCardOnBaize(){
-    console.log("keepCurrentCardOnBaize");
-}
-// DÉFAUSSER LA CARTE COURANTE
-function discardCurrentCard(){
-    console.log("discardCurrentCard");
 }
 // RESET
 function resetGame(){
