@@ -1,7 +1,7 @@
 /* ======= VARIABLES DE MODULE ======= */
 
 // Élément d'interface : Les boutons,la vue de la carte courante et le tapis
-let keepBtn, resetBtn, discardBtn, cardView, card, baizeView, drawBaizeBtn;
+let keepBtn, resetBtn, discardBtn, cardView, card, baizeView, baizeList, drawBaizeBtn;
 
 // Une zone plus large pour tirer au swipe sur un écran tactile
 let main;
@@ -44,6 +44,7 @@ function init(){
     drawBaizeBtn = document.querySelector("#draw-baize");
     // - La réserve
     baizeView = document.querySelector("#baize");
+    baizeList = document.querySelector("#baize-list");
     // - La carte tirées
     cardView = document.querySelector("#card-view");
 
@@ -137,6 +138,32 @@ function discardCurrentCard(){
 // AJOUTER LA CARTE COURANTE AU TAPIS DE RÉSERVE
 function keepCurrentCardOnBaize(){
     console.log("keepCurrentCardOnBaize");
+    displayCurrentCardOnBaize();
+    discardCurrentCard();
+}
+// AFFICHER LES CARTES GARDÉES
+function displayCurrentCardOnBaize(){
+
+    // Créer un nouveau node de liste
+    let newCardItem = document.createElement("li");
+
+    // Un paragraphe
+    let newCardItemParagraph = document.createElement("p");
+    // Le paragraphe contient le titre de la carte
+    newCardItemParagraph.innerText = currentCard.title;
+
+    // Une image
+    let newCardItemImg = document.createElement("img");
+    // L'image contient l'image de la carte
+    newCardItemImg.setAttribute('src', currentCard.imgUrl);
+
+    // Et tout insérer dans l'item de liste
+    newCardItem.appendChild(newCardItemParagraph);
+    newCardItem.appendChild(newCardItemImg);
+
+
+    // Et l'insérer à la liste
+    baizeList.appendChild(newCardItem);
 }
 // AFFICHAGE DES BOUTONS ET DE LA CARTE COURANTE - OU DU MESSAGE
 function handleDisplay(){
