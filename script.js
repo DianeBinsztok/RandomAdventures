@@ -1,7 +1,7 @@
 /* ======= VARIABLES DE MODULE ======= */
 
 // Élément d'interface : Les boutons,la vue de la carte courante et le tapis
-let keepBtn, resetBtn, cardView, card, baizeView, drawBaizeBtn;
+let keepBtn, resetBtn, discardBtn, cardView, card, baizeView, drawBaizeBtn;
 
 // Une zone plus large pour tirer au swipe sur un écran tactile
 let main;
@@ -18,9 +18,6 @@ let baize =[];
 // La carte courante : aucune carte n'est affichée au lancement du jeu
 let currentCard = null;
 
-// Garder ou non la carte courante : inutilisé au début de la partie
-//let keep = false;
-
 
 /* ======= LANCEMENT DE LA PARTIE ======= */
 
@@ -29,29 +26,28 @@ window.addEventListener("load",init);
 
 /* ======= FONCTIONS ======= */
 
+// DÉMARRAGE : INITIALISATION DES BOUTONS, CHARGEMENT DES CARTES, MISE EN PLACE DES EVENTLISTENER
 function init(){
 
-    /* I - VALEURS DE DÉPART */
+    /* I - ÉLÉMENTS D'INTERFACES */
 
     /* Les boutons */
+    // - La zone où sont affichés les boutons
+    discardBtn = document.querySelector("#discard");
     // - Garder la carte dans le deck
     keepBtn = document.querySelector("#keep-in-deck");
     // - Rejouer
     resetBtn = document.querySelector("#reset-deck");
 
-    /* LE TAPIS */   
-    /* Le bouton pour déplier la réserve*/
+    /* Le tapis */   
+    // - Le bouton pour déplier la réserve
     drawBaizeBtn = document.querySelector("#draw-baize");
-    /* La réserve*/
+    // - La réserve
     baizeView = document.querySelector("#baize");
-    /* La carte tirées */
+    // - La carte tirées
     cardView = document.querySelector("#card-view");
-    
 
-    /* Prendre une zone plus large pour tirer les cartes au swipe sur écrans tactiles*/
-    main = document.querySelector("main");
-
-    /* CHARGER LES CARTES */
+    /* II - CHARGER LES CARTES */
     fetch('./cards.json')
         .then(response => {
             if (!response.ok){
@@ -64,14 +60,14 @@ function init(){
 
             // Copier le tableau reçu dans un nouveau tableau
             cards = [...data];
+            // Un deck pour chaque partie
             deck = [...cards];
 
-            // Activer les boutons
+            /* III - ACTIVER LES EVENTLISTENERS */
             setEventListeners();
         })
     .catch(error => console.error(error));
 }
-
 // EVENTLISTENERS : ACTIVER LES BOUTONS
 function setEventListeners(){
 
@@ -90,12 +86,11 @@ function setEventListeners(){
         }
     });
 
-    // BOUTON KEEP - VARIABLE KEEP : GARDER LA CARTE COURANTE OU NON
-    keepBtn.addEventListener("click", ()=>{
-        keepBtn.classList.toggle("active");
-        //keep = keepBtn.classList.contains("active");
-        draw();
-    })
+    // BOUTON RÉSERVER : GARDER LA CARTE COURANTE
+    keepBtn.addEventListener("click", keepCurrentCardOnBaize);
+
+    // BOUTON DÉFAUSSER : DÉFAUSSER LA CARTE COURANTE
+    discardBtn.addEventListener("click", discardCurrentCard);
 
     // DRAW BAIZE : LE BOUTON POUR AFFICHER LA RÉSERVE
     drawBaizeBtn.addEventListener("click", ()=>{
@@ -106,11 +101,85 @@ function setEventListeners(){
     // BOUTON RESET : RÉAFFECTER LE TABLEAU DECK POUR RELANCER LA PARTIE
     resetBtn.addEventListener("click", resetGame);
 }
-
+// TIRAGE : RASSEMBLE LES AUTRES FONCTIONS
 function draw(){
     console.log("draw");
+    currentCard = drawNewRandomCard(deck);
+    handleDisplay(deck, cardView, currentCard, keepBtn, resetBtn);
 }
+// AFFICHAGE DES BOUTONS ET DE LA CARTE COURANTE - OU DU MESSAGE
+function handleDisplay(deck, cardView, currentCard, keepBtn, resetBtn){
+    // I - DÉBUT : LE DECK EST PLEIN MAIS PAS DE CARTE COURANTE 
+    if(deck.length>0 && !currentCard){
 
+        // L'affichage du tapis
+        cardView.innerHTML = '<h2>Cliquez sur le deck tour tirer une carte</h2><img src="./assets/img/back.png" alt="Cliquez pour tirer une carte">';
+
+        // Les boutons
+        discardBtn.classList.add("hide");
+        keepBtn.classList.add("hide");
+        resetBtn.classList.add("hide");
+    }
+    
+    // II - IL RESTE DES CARTES DANS LE DECK ET UNE CARTE COURANTE
+    if(deck.length>0 && currentCard){
+
+        // L'affichage du tapis
+        cardView.innerHTML = "<img id='current-card' src='./"+currentCard.imgUrl+"'/>";
+
+        // Les boutons
+        discardBtn.classList.remove("hide");
+        keepBtn.classList.remove("hide");
+    }
+
+    // III - LE DECK EST VIDE
+    if(deck.length<=0){
+
+        // L'affichage du tapis
+        cardView.innerHTML = "<p>Votre deck est vide !</p>";
+
+        // Les boutons
+        discardBtn.classList.add("hide");
+        keepBtn.classList.add("hide");
+        resetBtn.classList.remove("hide");
+    }
+
+    // Remettre la valeur de keep à false pour le nouveau tour
+    keepBtn.classList.remove("active");
+
+    // Retirer le focus des boutons pour éviter son déclenchement au spacebar
+    cardView.blur();
+    discardBtn.blur();
+    keepBtn.blur();
+}
+// TIRAGE ALÉATOIRE : RENVOIE UNE CARTE DU DECK
+function drawNewRandomCard(cardsArray){
+
+    // Si le deck comporte encore des cartes
+    if(cardsArray.length>0){
+
+        // Générer un index aléatoire dans les limites du nombre de cartes du deck
+        let nbOfCards = cardsArray.length;
+        let randomIndex = Math.floor(Math.random() * nbOfCards);
+
+        // Tirer la carte à l'index généré
+        let newRandomCard = cardsArray[randomIndex];
+
+        return newRandomCard;
+    }else{
+        // Si le deck est vide, on ne renvoie rien
+        return null;
+    }
+}
+// AJOUTER LA CARTE COURANTE AU TAPIS DE RÉSERVE
+function keepCurrentCardOnBaize(){
+    console.log("keepCurrentCardOnBaize");
+}
+// DÉFAUSSER LA CARTE COURANTE
+function discardCurrentCard(){
+    console.log("discardCurrentCard");
+}
+// RESET
 function resetGame(){
     console.log("resetGame");
 }
