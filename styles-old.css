@@ -45,7 +45,44 @@ footer a{
     display: inline;
     color: antiquewhite;
 }
-
+#baize{
+    height: 25%;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:1rem;
+    background-color: green;
+}
+#baize-list{
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding:1rem;
+}
+#baize-list li{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    list-style-type: none;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    background-color:red;
+}
+#baize-list li p{
+    box-sizing: border-box;
+}
+#baize-list li img{
+    box-sizing: border-box;
+    max-height: 90%;
+    width: auto;
+}
 #keep-in-deck, #reset-deck{
     font-size: 1em;
     padding: 0.7rem;
@@ -80,67 +117,39 @@ footer a{
     border-radius: 10px;
     mix-blend-mode: multiply;
 }
-
-
-
-#baize{
-    /*Placer le bouton sur la gaiche du tapis*/
-    display: flex;
-    /* Empêcher le scroll sur l'arrière-plan */
-    z-index: 2;
-    overflow: scroll!important;
-    position: fixed; 
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    transform: translateX(90%);
-    transition: all 0.5s ease-in-out;
-}
-#baize.active{
-    transform: translateX(0%);
-    background-color: black;
-}
-#draw-baize{
-    padding:0;
-    width:10%;
-    align-self:center;
-    position: sticky;
-    left:0;
-    top : 300px;
-    background-color: black;
-    color: antiquewhite;
-    border: none;
-    border-radius: 50px 0 0 50px;
-}
-#baize-list{
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    height:100%;
-    width:90%;
-    padding:1rem;
-}
-#baize-list li{
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    list-style-type: none;
-    text-align: center;
-    max-width: 80%;
-    height:auto;
-    margin: 1rem;
-}
-#baize-list li img{
-    box-sizing: border-box;
-    max-height: 100%;
-    max-width: 100%;
-}
-
 .hide{
     display: none;
 }
+#card-view.selected img{
+    scale: 1.05;
+    border: 5px solid yellowgreen;
+}
+/*II - MEDIA QUERIES*/
+
+/*1 - MOBILES VERTICAUX*/
+@media only screen and (max-width: 430px) {
+}
+
+
+/*2 - AUTRES*/
+@media only screen and (min-width : 430px) {
+}
+
+/*
+body{
+    background-color: blueviolet;
+}
+main{
+    background-color: red;  
+}
+#baize{
+    background-color: orange;  
+}
+#baize-list{
+    background-color: green;
+}
+#card-view{
+    background-color: yellow;
+}
+*/
+
