@@ -155,7 +155,7 @@ function storeOrDiscard(stackString){
     // placer la carte courante sur le tas "discard" ou le tas "baize"
     console.log("baize.length : ", baize.length);
     if(stackString=="baize"){
-        if(baize.length<=3){
+        if(baize.length<3){
             displayCurrentCardOnDesignatedStack("baize");
             baize.push(currentCard);
         }else{
