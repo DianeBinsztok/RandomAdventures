@@ -13,7 +13,7 @@ let cards = [];
 let deck = [];
 
 // Les cartes gardées
-let baize =[];
+//let baize =[];
 
 // La carte courante : aucune carte n'est affichée au lancement du jeu
 let currentCard = null;
@@ -73,8 +73,8 @@ function init(){
 function setEventListeners(){
 
     // TIRAGE ALÉATOIRE:
-    // - Au clic sur le bouton,
-    cardView.addEventListener("click", draw);
+    // - Au clic sur la carte courante,
+    // cardView.addEventListener("click", draw);
 
     // - Au clic sur la barre d'espace
     window.addEventListener("keydown", (event)=>{
@@ -87,8 +87,12 @@ function setEventListeners(){
         }
     });
 
+
     // BOUTON RÉSERVER : GARDER LA CARTE COURANTE
     keepBtn.addEventListener("click", keepCurrentCardOnBaize);
+
+    // Version mobile : détecter les tapotements et swipe sur cardView
+    handleTouchAndSwipes(cardView);
 
     // BOUTON DÉFAUSSER : DÉFAUSSER LA CARTE COURANTE
     discardBtn.addEventListener("click", discardCurrentCard);
@@ -96,7 +100,6 @@ function setEventListeners(){
     // DRAW BAIZE : LE BOUTON POUR AFFICHER LA RÉSERVE
     drawBaizeBtn.addEventListener("click", ()=>{
         baizeView.classList.toggle("active");
-        console.log("toggle active");
     });
 
     // BOUTON RESET : RÉAFFECTER LE TABLEAU DECK POUR RELANCER LA PARTIE
@@ -213,4 +216,63 @@ function handleDisplay(){
 // RESET
 function resetGame(){
     console.log("resetGame");
+}
+
+// SWIPE ET TAPOTEMENTS
+function handleTouchAndSwipes(cardView){
+
+    // Coordonnées de départ
+    let startX = 0;
+    let startY = 0;
+
+    // Le seuil de mouvement du doigt détectable : 50px
+    const swipeThreshold = 50;
+    
+    // Au début du toucher
+    cardView.addEventListener("touchstart", (event) => {
+        // Enregistrer les coordonées touchées, sur les deux axes
+        startX = event.touches[0].clientX;
+        startY = event.touches[0].clientY;
+    });
+    // À la fin du contact
+    cardView.addEventListener("touchend", (event) => {
+
+        // Enregistrer la différence entre le contact de départ et le contact de fin, sur les deux axes
+        const endX = event.changedTouches[0].clientX;
+        const endY = event.changedTouches[0].clientY;
+    
+        const deltaX = endX - startX;
+        const deltaY = endY - startY;
+    
+        // Si le seuil de détection n'est pas dépassé : c'est un tapotement.
+        if (Math.abs(deltaX) < swipeThreshold && Math.abs(deltaY) < swipeThreshold ){
+            console.log("tapotement");
+            draw();
+            return;
+        }
+    
+        // Au swipe horizontal
+        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+            // Movement positif sur l'axe X = swipe à droite ➞ RÉSERVER LA CARTE
+            if (deltaX > 0) {
+                console.log("➞");
+                keepCurrentCardOnBaize();
+            // Movement négatif sur l'axe X = swipe à gauche ➞ pas d'action
+            } else {
+                console.log("🠔");
+            }
+        } 
+        // Au swipe vertical
+        else {
+            // Movement positif sur l'axe Y = swipe vers le bas ➞ TIRER UNE NOUVELLE CARTE SANS DÉFAUSSER LA PRÉCÉDENTE
+            if (deltaY > 0) {
+                console.log("🠗");
+                draw();
+            // Movement négatif sur l'axe Y = swipe vers le haut ➞ DÉFAUSSER LA CARTE COURANTE
+            } else {
+                console.log("🠕");
+                discardCurrentCard();
+            }
+        }
+    });
 }
