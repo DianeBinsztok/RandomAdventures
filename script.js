@@ -8,6 +8,8 @@ let keepBtn, resetBtn, discardBtn, cardView, card, baizeView, discardView, baize
 let cards = [];
 // La pioche utilisée pendant le jeu
 let deck = [];
+// Les cartes réservées
+let baize = [];
 // Les cartes défaussées
 let discardedCards=[];
 
@@ -151,7 +153,18 @@ function discardCurrentCard(){
 // AJOUTER LA CARTE COURANTE AU TAPIS DE RÉSERVE
 function storeOrDiscard(stackString){
     // placer la carte courante sur le tas "discard" ou le tas "baize"
-    displayCurrentCardOnDesignatedStack(stackString);
+    console.log("baize.length : ", baize.length);
+    if(stackString=="baize"){
+        if(baize.length<=3){
+            displayCurrentCardOnDesignatedStack("baize");
+            baize.push(currentCard);
+        }else{
+            console.log("Pas plus de trois cartes en réserve");
+            return;
+        }
+    }else if(stackString=="discard"){
+        displayCurrentCardOnDesignatedStack("discard");
+    }
     discardCurrentCard();
 }
 // AFFICHER LES CARTES GARDÉES
