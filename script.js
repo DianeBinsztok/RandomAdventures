@@ -108,8 +108,11 @@ function setEventListeners(){
 // TIRAGE : RASSEMBLE LES AUTRES FONCTIONS
 function draw(){
     console.log("draw");
-    currentCard = drawNewRandomCard(deck);
-    handleDisplay();
+    if(!currentCard){
+        currentCard = drawNewRandomCard(deck);
+        handleDisplay();
+    }
+
 }
 // TIRAGE ALÉATOIRE : RENVOIE UNE CARTE DU DECK
 function drawNewRandomCard(cardsArray){
