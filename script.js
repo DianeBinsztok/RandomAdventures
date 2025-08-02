@@ -1,19 +1,16 @@
 /* ======= VARIABLES DE MODULE ======= */
 
 // Élément d'interface : Les boutons,la vue de la carte courante et le tapis
-let keepBtn, resetBtn, discardBtn, cardView, card, baizeView, baizeList, drawBaizeBtn;
-
-// Une zone plus large pour tirer au swipe sur un écran tactile
-let main;
+let keepBtn, resetBtn, discardBtn, cardView, card, baizeView, discardView, baizeList, discardList, drawBaizeBtn, drawDiscardBtn;
 
 /* CHARGEMENT DES CARTES AU DÉBUT */
 // Les cartes récupérées après un fetch
 let cards = [];
 // La pioche utilisée pendant le jeu
 let deck = [];
+// Les cartes défaussées
+let discardedCards=[];
 
-// Les cartes gardées
-//let baize =[];
 
 // La carte courante : aucune carte n'est affichée au lancement du jeu
 let currentCard = null;
@@ -33,7 +30,7 @@ function init(){
 
     /* Les boutons */
     // - La zone où sont affichés les boutons
-    discardBtn = document.querySelector("#discard");
+    discardBtn = document.querySelector("#discard-btn");
     // - Garder la carte dans le deck
     keepBtn = document.querySelector("#keep-in-deck");
     // - Rejouer
@@ -42,9 +39,15 @@ function init(){
     /* Le tapis */   
     // - Le bouton pour déplier la réserve
     drawBaizeBtn = document.querySelector("#draw-baize");
+    // - Le bouton pour déplier la défausse
+    drawDiscardBtn = document.querySelector("#draw-discard");
+
     // - La réserve
     baizeView = document.querySelector("#baize");
     baizeList = document.querySelector("#baize-list");
+    // - La défausse
+    discardView = document.querySelector("#discard");
+    discardList = document.querySelector("#discard-list");
     // - La carte tirées
     cardView = document.querySelector("#card-view");
 
@@ -87,19 +90,23 @@ function setEventListeners(){
         }
     });
 
-
     // BOUTON RÉSERVER : GARDER LA CARTE COURANTE
-    keepBtn.addEventListener("click", keepCurrentCardOnBaize);
+    keepBtn.addEventListener("click", ()=>{storeOrDiscard("baize")});
+    // BOUTON DÉFAUSSER : DÉFAUSSER LA CARTE COURANTE
+    discardBtn.addEventListener("click", ()=>{storeOrDiscard("discard")});
 
     // Version mobile : détecter les tapotements et swipe sur cardView
     handleTouchAndSwipes(cardView);
 
-    // BOUTON DÉFAUSSER : DÉFAUSSER LA CARTE COURANTE
-    discardBtn.addEventListener("click", discardCurrentCard);
+
 
     // DRAW BAIZE : LE BOUTON POUR AFFICHER LA RÉSERVE
     drawBaizeBtn.addEventListener("click", ()=>{
         baizeView.classList.toggle("active");
+    });
+    // DRAW DISCARD : LE BOUTON POUR AFFICHER LA DÉFAUSSE
+    drawDiscardBtn.addEventListener("click", ()=>{
+        discardView.classList.toggle("active");
     });
 
     // BOUTON RESET : RÉAFFECTER LE TABLEAU DECK POUR RELANCER LA PARTIE
@@ -142,13 +149,13 @@ function discardCurrentCard(){
     }
 }
 // AJOUTER LA CARTE COURANTE AU TAPIS DE RÉSERVE
-function keepCurrentCardOnBaize(){
-    console.log("keepCurrentCardOnBaize");
-    displayCurrentCardOnBaize();
+function storeOrDiscard(stackString){
+    // placer la carte courante sur le tas "discard" ou le tas "baize"
+    displayCurrentCardOnDesignatedStack(stackString);
     discardCurrentCard();
 }
 // AFFICHER LES CARTES GARDÉES
-function displayCurrentCardOnBaize(){
+function displayCurrentCardOnDesignatedStack(stackString){
 
     // Créer un nouveau node de liste
     let newCardItem = document.createElement("li");
@@ -169,7 +176,12 @@ function displayCurrentCardOnBaize(){
 
 
     // Et l'insérer à la liste
-    baizeList.appendChild(newCardItem);
+    if(stackString == "baize"){
+        baizeList.appendChild(newCardItem);
+    }else if(stackString == "discard"){
+        discardList.appendChild(newCardItem);
+        console.log("discardList : ", discardList);
+    }
 }
 // AFFICHAGE DES BOUTONS ET DE LA CARTE COURANTE - OU DU MESSAGE
 function handleDisplay(){
@@ -254,10 +266,11 @@ function handleTouchAndSwipes(cardView){
             // Movement positif sur l'axe X = swipe à droite ➞ RÉSERVER LA CARTE
             if (deltaX > 0) {
                 console.log("➞");
-                keepCurrentCardOnBaize();
-            // Movement négatif sur l'axe X = swipe à gauche ➞ pas d'action
+                storeOrDiscard("baize");
+            // Movement négatif sur l'axe X = swipe à gauche ➞ DÉFAUSSER LA CARTE COURANTE
             } else {
                 console.log("🠔");
+                storeOrDiscard("discard");
             }
         } 
         // Au swipe vertical
@@ -266,10 +279,9 @@ function handleTouchAndSwipes(cardView){
             if (deltaY > 0) {
                 console.log("🠗");
                 draw();
-            // Movement négatif sur l'axe Y = swipe vers le haut ➞ DÉFAUSSER LA CARTE COURANTE
+            // Movement négatif sur l'axe Y = swipe vers le haut ➞ pas d'action
             } else {
                 console.log("🠕");
-                discardCurrentCard();
             }
         }
     });
@@ -279,5 +291,6 @@ function resetGame(){
     deck = [...cards];
     currentCard = null;
     baizeList.innerHTML="";
+    discardList.innerHTML="";
     handleDisplay(deck, cardView, currentCard, keepBtn, resetBtn);
 }

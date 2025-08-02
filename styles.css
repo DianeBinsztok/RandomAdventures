@@ -51,14 +51,14 @@ footer a{
 #decisions button{
     margin: 1rem;
 }
-#keep-in-deck, #reset-deck, #discard{
+#keep-in-deck, #reset-deck, #discard-btn{
     font-size: 1em;
     padding: 0.7rem;
     background-color: antiquewhite;
     border: 1px solid rgb(6, 59, 80);
     border-radius: 5px;
 }
-#keep-in-deck:hover, #reset-deck:hover, #discard:hover{
+#keep-in-deck:hover, #reset-deck:hover, #discard-btn:hover{
     background-color: rgb(6, 59, 80);
     color: antiquewhite;
     font-weight: bold;
@@ -87,38 +87,53 @@ footer a{
 }
 
 
-
-#baize{
+/* LA RÉSERVE ET LA DÉFAUSSE */
+#baize, #discard{
     /*Placer le bouton sur la gaiche du tapis*/
     display: flex;
     /* Empêcher le scroll sur l'arrière-plan */
-    z-index: 2;
     overflow: scroll!important;
     position: fixed; 
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    transform: translateX(90%);
     transition: all 0.5s ease-in-out;
 }
-#baize.active{
+/* La réserve à droite, avec le bouton qui dépasse à gauche de la réserve */
+#baize{
+    transform: translateX(90%);
+}
+/* La défausse à gauche, avec le bouton qui dépasse à droite de la défausse*/
+#discard{
+    transform: translateX(-90%);
+}
+#baize.active, #discard.active{
     transform: translateX(0%);
     background-color: black;
+    z-index: 2;
 }
-#draw-baize{
+#draw-baize, #draw-discard{
     padding:0;
     width:10%;
     align-self:center;
     position: sticky;
-    left:0;
     top : 300px;
     background-color: black;
     color: antiquewhite;
     border: none;
+}
+/* Le bouton de la réserve dépasse à droite de l'écran */
+#draw-baize{
+    left:0;
     border-radius: 50px 0 0 50px;
 }
-#baize-list{
+/* Le bouton de la défausse dépasse à gauche de l'écran */
+#draw-discard{
+    right:0;
+    border-radius: 0 50px 50px 0;
+}
+#baize-list, #discard-list{
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -128,7 +143,7 @@ footer a{
     width:90%;
     padding:1rem;
 }
-#baize-list li{
+#baize-list li, #discard-list li{
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -140,7 +155,7 @@ footer a{
     height:auto;
     margin: 1rem;
 }
-#baize-list li img{
+#baize-list li img, #discard-list li img{
     box-sizing: border-box;
     max-height: 100%;
     max-width: 100%;
