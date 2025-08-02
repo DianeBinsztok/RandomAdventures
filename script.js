@@ -213,11 +213,6 @@ function handleDisplay(){
     discardBtn.blur();
     keepBtn.blur();
 }
-// RESET
-function resetGame(){
-    console.log("resetGame");
-}
-
 // SWIPE ET TAPOTEMENTS
 function handleTouchAndSwipes(cardView){
 
@@ -275,4 +270,11 @@ function handleTouchAndSwipes(cardView){
             }
         }
     });
+}
+// RESET
+function resetGame(){
+    deck = [...cards];
+    currentCard = null;
+    baizeList.innerHTML="";
+    handleDisplay(deck, cardView, currentCard, keepBtn, resetBtn);
 }
