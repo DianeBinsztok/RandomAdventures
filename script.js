@@ -195,7 +195,7 @@ function displayCurrentCardOnDesignatedStack(stackString){
 }
 // AFFICHAGE DES BOUTONS ET DE LA CARTE COURANTE - OU DU MESSAGE
 function handleDisplay(){
-    // I - DÉBUT : LE DECK EST PLEIN MAIS PAS DE CARTE COURANTE 
+    // I - LE DECK EST PLEIN MAIS PAS DE CARTE COURANTE 
     if(deck.length>0 && !currentCard){
 
         // L'affichage du tapis
@@ -215,7 +215,9 @@ function handleDisplay(){
 
         // Les boutons
         discardBtn.classList.remove("hide");
-        keepBtn.classList.remove("hide");
+        if(baize.length<3){
+            keepBtn.classList.remove("hide");
+        }
     }
 
     // III - LE DECK EST VIDE
