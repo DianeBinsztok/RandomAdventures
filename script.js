@@ -100,8 +100,6 @@ function setEventListeners(){
     // Version mobile : détecter les tapotements et swipe sur cardView
     handleTouchAndSwipes(cardView);
 
-
-
     // DRAW BAIZE : LE BOUTON POUR AFFICHER LA RÉSERVE
     drawBaizeBtn.addEventListener("click", ()=>{
         baizeView.classList.toggle("active");
@@ -186,7 +184,6 @@ function displayCurrentCardOnDesignatedStack(stackString){
     // Et tout insérer dans l'item de liste
     newCardItem.appendChild(newCardItemParagraph);
     newCardItem.appendChild(newCardItemImg);
-
 
     // Et l'insérer à la liste
     if(stackString == "baize"){

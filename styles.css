@@ -89,31 +89,27 @@ footer a{
 
 /* LA RÉSERVE ET LA DÉFAUSSE */
 #baize, #discard{
-    /*Placer le bouton sur la gaiche du tapis*/
     display: flex;
-    /* Empêcher le scroll sur l'arrière-plan */
-    overflow: scroll!important;
     position: fixed; 
+    height: 100%;
+    margin-top:-1rem;
+    margin-bottom:-1rem;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
+    z-index: 1;
     transition: all 0.5s ease-in-out;
 }
-/* La réserve à droite, avec le bouton qui dépasse à gauche de la réserve */
-#baize{
-    transform: translateX(90%);
-}
-/* La défausse à gauche, avec le bouton qui dépasse à droite de la défausse*/
-#discard{
-    transform: translateX(-90%);
-}
 #baize.active, #discard.active{
-    transform: translateX(0%);
     background-color: black;
+    transform: translateX(0%);
     z-index: 2;
 }
 #draw-baize, #draw-discard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding:0;
     width:10%;
     align-self:center;
@@ -135,6 +131,8 @@ footer a{
 }
 #baize-list, #discard-list{
     box-sizing: border-box;
+    overflow: scroll!important;
+    background-color: black;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -142,6 +140,13 @@ footer a{
     height:100%;
     width:90%;
     padding:1rem;
+    /*Cacher la scrollbar*/
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+/* Cacher la  scrollbar pour Chrome, Safari et Opera */
+#baize-list::-webkit-scrollbar, #discard-list::-webkit-scrollbar {
+    display: none;
 }
 #baize-list li, #discard-list li{
     box-sizing: border-box;
@@ -151,16 +156,65 @@ footer a{
     justify-content: flex-start;
     list-style-type: none;
     text-align: center;
-    max-width: 80%;
-    height:auto;
+    width: 80%;
+    height: auto;
     margin: 1rem;
 }
 #baize-list li img, #discard-list li img{
     box-sizing: border-box;
-    max-height: 100%;
-    max-width: 100%;
+    height: 100%;
+    width: 100%;
 }
 
 .hide{
     display: none;
+}
+/* MOBILE */
+@media only screen and (max-width : 431px) {
+    /*Largeur du contenant moins celle du bouton*/
+    #baize-list, #discard-list{
+        width: 90%;
+    }
+    #draw-baize, #draw-discard{
+        width: 10%;
+    }
+    /* Reculer la réserve et la défausse hors de l'écran, de la largeur de la liste, pour faire dépasser le bouton*/
+    #baize {
+        transform: translateX(90%);
+    }
+    #discard {
+        transform: translateX(-90%);
+    }
+
+}
+/* TABLETTES */
+@media only screen and (min-width : 431px) and (max-width : 1024px){
+    #baize-list, #discard-list{
+        width: 95%;
+    }
+    #draw-baize, #draw-discard{
+        width: 5%;
+    }
+    #baize {
+        transform: translateX(95%);
+    }
+    #discard {
+        transform: translateX(-95%);
+    }
+}
+
+/* DESKTOP */
+@media only screen and (min-width : 1025px) {
+    #baize-list, #discard-list{
+        width: 97%;
+    }
+    #draw-baize, #draw-discard{
+        width: 3%;
+    }
+    #baize {
+        transform: translateX(97%);
+    }
+    #discard {
+        transform: translateX(-97%);
+    }
 }
