@@ -1,6 +1,6 @@
 /* ======= VARIABLES DE MODULE ======= */
 
-// Élément d'interface : Les boutons,la vue de la carte courante et le tapis
+// Élément d'interface : Les boutons,la vue de la carte courante, le tapis et la défausse
 let keepBtn, resetBtn, discardBtn, cardView, card, baizeView, discardView, baizeList, discardList, drawBaizeBtn, drawDiscardBtn;
 
 /* CHARGEMENT DES CARTES AU DÉBUT */

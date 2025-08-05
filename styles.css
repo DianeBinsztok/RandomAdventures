@@ -1,12 +1,10 @@
 /*I - GÉNÉRAL*/
 html{
-    height: 100%;
     margin: 0;
     padding: 0;
 }
 body{
     box-sizing: border-box;
-    height: 100dvh;
     background-color: antiquewhite;
 	display: flex;
 	flex-direction: column;
@@ -16,6 +14,10 @@ body{
 }
 
 header, footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: rgb(6, 59, 80);
     color: antiquewhite;
 }
@@ -23,34 +25,47 @@ header{
     font-size: 1em;
     font-weight: bold;
 }
-main{
-    box-sizing: border-box;
-    height:100%;
-    width: 100%;
-    display: flex;
-	flex-direction: column;
-    align-items:center;
-    justify-content: center;
-    padding: 1rem;
-}
-header, footer{
-    display: flex;
-    justify-content: center;
-    text-align: center;
+/*Mise en page pour éviter le scroll sur tous les devices: */
+body{
+    height:100dvh;
 }
 header{
-    padding: 0.5rem;
+    height:15dvh;
+}
+main{
+    height:80dvh;
+}
+footer{
+    height:5dvh;
+}
+
+header, main, footer{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
 }
 footer a{
-    display: inline;
     color: antiquewhite;
 }
+/*Mise en page de la vue de la carte pour éviter que la hauteur varie entre les différentes vues*/
+#card-view{
+    height: 85%;
+}
+#decisions{
+    height: 15%;
+}
+
 #decisions{
     display: flex;
 }
 #decisions button{
     margin: 1rem;
 }
+
 #keep-in-deck, #reset-deck, #discard-btn{
     font-size: 1em;
     padding: 0.7rem;
@@ -63,19 +78,25 @@ footer a{
     color: antiquewhite;
     font-weight: bold;
 }
+/*Mise en page à l'intérieur de la carte pour éviter que la hauteur de l'image varie par rapport au titre */
+#card_heading{
+    height: 10%;
+}
+#card_content{
+    height: 90%;
+}
 #card-view{
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height:75%;
     width: 100%;
     padding: 0.7rem;
 }
 #card-view h2{
     text-align: center;
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 #card-view img{
     box-sizing: border-box;
@@ -92,8 +113,6 @@ footer a{
     display: flex;
     position: fixed; 
     height: 100%;
-    margin-top:-1rem;
-    margin-bottom:-1rem;
     top: 0;
     bottom: 0;
     left: 0;
@@ -106,15 +125,22 @@ footer a{
     transform: translateX(0%);
     z-index: 2;
 }
+#discard svg{
+    transition: all 0.5s ease-in-out;
+}
+#discard.active svg{
+    transform: rotate(180deg);
+}
 #draw-baize, #draw-discard{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding:0;
-    width:10%;
+    justify-content: center;
+    padding-top:1.5rem;
+    padding-bottom:1.5rem;
     align-self:center;
     position: sticky;
-    top : 300px;
+    /*top : 300px;*/
     background-color: black;
     color: antiquewhite;
     border: none;
@@ -148,6 +174,7 @@ footer a{
 #baize-list::-webkit-scrollbar, #discard-list::-webkit-scrollbar {
     display: none;
 }
+
 #baize-list li, #discard-list li{
     box-sizing: border-box;
     display: flex;
@@ -187,8 +214,8 @@ footer a{
     }
 
 }
-/* TABLETTES */
-@media only screen and (min-width : 431px) and (max-width : 1024px){
+/* PETITES TABLETTES */
+@media only screen and (min-width : 431px) and (max-width : 999px){
     #baize-list, #discard-list{
         width: 95%;
     }
@@ -204,17 +231,19 @@ footer a{
 }
 
 /* DESKTOP */
-@media only screen and (min-width : 1025px) {
+@media only screen and (min-width : 1000px) {
     #baize-list, #discard-list{
-        width: 97%;
+        width: 93%;
     }
     #draw-baize, #draw-discard{
-        width: 3%;
+        width: 7%;
     }
     #baize {
-        transform: translateX(97%);
+        left:66%;
+        transform: translateX(93%);
     }
     #discard {
-        transform: translateX(-97%);
+        right:66%;
+        transform: translateX(-93%);
     }
 }
