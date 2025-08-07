@@ -51,16 +51,51 @@ header, main, footer{
 footer a{
     color: antiquewhite;
 }
-/*Mise en page de la vue de la carte pour éviter que la hauteur varie entre les différentes vues*/
 #card-view{
+    height: 100%;
+    width: 100%;
+    padding: 0.7rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/*Mise en page de la vue de la carte pour éviter que la hauteur varie entre les différentes vues*/
+#card{
+    height: 85%;
+    width: 100%;
+}
+/*Mise en page à l'intérieur de la carte pour éviter que la hauteur de l'image varie par rapport au titre */
+#card_heading{
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#card_heading h2{
+    text-align: center;
+    font-size: 1.5em;
+}
+#card_content{
     height: 85%;
 }
+
+#card img{
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+    mix-blend-mode: multiply;
+}
+/* BOUTONS DÉFAUSSER ET RÉSERVER */
 #decisions{
     height: 15%;
-}
-
-#decisions{
+    width: 100%;
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 #decisions button{
     margin: 1rem;
@@ -77,34 +112,6 @@ footer a{
     background-color: rgb(6, 59, 80);
     color: antiquewhite;
     font-weight: bold;
-}
-/*Mise en page à l'intérieur de la carte pour éviter que la hauteur de l'image varie par rapport au titre */
-#card_heading{
-    height: 10%;
-}
-#card_content{
-    height: 90%;
-}
-#card-view{
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 0.7rem;
-}
-#card-view h2{
-    text-align: center;
-    font-size: 1.5em;
-}
-#card-view img{
-    box-sizing: border-box;
-    height: 100%;
-    max-width: 90%;
-    object-fit: contain;
-    border-radius: 10px;
-    mix-blend-mode: multiply;
 }
 
 
@@ -247,3 +254,11 @@ footer a{
         transform: translateX(-93%);
     }
 }
+
+/*
+#card-view{background-color: blueviolet;}
+#card{background-color: blue;}
+#card_heading{background-color: green;}
+#card_content{background-color: yellowgreen;}
+#decisions{background-color: yellow;}
+*/

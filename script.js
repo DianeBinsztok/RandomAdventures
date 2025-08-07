@@ -1,7 +1,9 @@
 /* ======= VARIABLES DE MODULE ======= */
 
 // Élément d'interface : Les boutons,la vue de la carte courante, le tapis et la défausse
-let keepBtn, resetBtn, discardBtn, cardView, card, baizeView, discardView, baizeList, discardList, drawBaizeBtn, drawDiscardBtn;
+let keepBtn, resetBtn, discardBtn, baizeView, discardView, baizeList, discardList, drawBaizeBtn, drawDiscardBtn;
+// La carte : là où l'affichage va changer
+let card, cardTitle, cardContent, cardContentImg;
 
 /* CHARGEMENT DES CARTES AU DÉBUT */
 // Les cartes récupérées après un fetch
@@ -27,7 +29,7 @@ window.addEventListener("load",init);
 
 // DÉMARRAGE : INITIALISATION DES BOUTONS, CHARGEMENT DES CARTES, MISE EN PLACE DES EVENTLISTENER
 function init(){
-
+    
     /* I - ÉLÉMENTS D'INTERFACES */
 
     /* Les boutons */
@@ -51,7 +53,10 @@ function init(){
     discardView = document.querySelector("#discard");
     discardList = document.querySelector("#discard-list");
     // - La carte tirées
-    cardView = document.querySelector("#card-view");
+    card = document.querySelector("#card");
+    cardTitle = document.querySelector("#card_title");
+    cardContent = document.querySelector("#card_content");
+    cardContentImg = document.querySelector("#content_img");
 
     /* II - CHARGER LES CARTES */
     fetch('./cards.json')
@@ -79,7 +84,7 @@ function setEventListeners(){
 
     // TIRAGE ALÉATOIRE:
     // - Au clic sur la carte courante,
-    // cardView.addEventListener("click", draw);
+    card.addEventListener("click", draw);
 
     // - Au clic sur la barre d'espace
     window.addEventListener("keydown", (event)=>{
@@ -98,7 +103,7 @@ function setEventListeners(){
     discardBtn.addEventListener("click", ()=>{storeOrDiscard("discard")});
 
     // Version mobile : détecter les tapotements et swipe sur cardView
-    handleTouchAndSwipes(cardView);
+    handleTouchAndSwipes(card);
 
     // DRAW BAIZE : LE BOUTON POUR AFFICHER LA RÉSERVE
     drawBaizeBtn.addEventListener("click", ()=>{
@@ -199,8 +204,9 @@ function handleDisplay(){
     if(deck.length>0 && !currentCard){
 
         // L'affichage du tapis
-        cardView.innerHTML = '<h2>Cliquez sur le deck tour tirer une carte</h2><img src="./assets/img/back.png" alt="Cliquez pour tirer une carte">';
-
+        cardTitle.innerText = "Cliquez pour tirer une carte";
+        cardContentImg.src = "./assets/img/back.png";
+        
         // Les boutons
         discardBtn.classList.add("hide");
         keepBtn.classList.add("hide");
@@ -211,7 +217,8 @@ function handleDisplay(){
     if(deck.length>0 && currentCard){
 
         // L'affichage du tapis
-        cardView.innerHTML = "<img id='current-card' src='./"+currentCard.imgUrl+"'/>";
+        cardTitle.innerText = "Titre de la carte courante";
+        cardContentImg.src = "./"+currentCard.imgUrl;
 
         // Les boutons
         discardBtn.classList.remove("hide");

@@ -31,26 +31,41 @@
                 </svg>
             </button>
         </section>
-
+        
+        <!-- Partie d'affichage dynamique : la carte et les boutons -->
         <section id="card-view">
-            <div id="card">
+            
+            <!-- La carte -->
+            <section id="card">
                 <section id="card_heading">
-                    <h2 id="card_title">Cliquez sur le deck tour tirer une carte</h2>
+                    <div id="card_heading_type">
+                        <img id="type_img" src="" alt="o"/>
+                    </div>
+                    <div id="card_heading_title">
+                        <h2 id="card_title">Cliquez pour tirer une carte</h2>
+                    </div>
+                    <div id="card_heading_adventure-danger">
+                            <img id="adventure-danger_img" src="" alt="o"/>
+                    </div>
                 </section>
                 <section id="card_content">
-                    <img src="./assets/img/back.png" alt="Cliquez pour tirer une carte">
+                    <img id="content_img" src="./assets/img/back.png" alt="Cliquez pour tirer une carte"/>
                 </section>
-            </div>
+            </section>
+
+            <!-- Les boutons -->
+            <section id="decisions">
+                <button id="discard-btn" class="hide">🠔 Défausser</button>
+                <button id="keep-in-deck" class="hide">Réserver ➞</button>
+                <button id="reset-deck" class="hide">Recommencer une partie</button>
+            </section>
         </section>
-        <section id="decisions">
-            <button id="discard-btn" class="hide">🠔 Défausser</button>
-            <button id="keep-in-deck" class="hide">Réserver ➞</button>
-            <button id="reset-deck" class="hide">Recommencer une partie</button>
-        </section>
+
     </main>
     <footer>
         <p>Jeu de carte écrit et conçu par <a href="https://acritarche.com/">Acritarche</a></p>
         <script type="module" src="script.js"></script>
+
     </footer>
 </body>
 </html>
