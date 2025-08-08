@@ -1,3 +1,6 @@
+import {displaySvgIcon} from "./display-svg.js";
+let test = displaySvgIcon("drawerArrow");    
+console.log(test);
 /* ======= VARIABLES DE MODULE ======= */
 
 // Élément d'interface : Les boutons,la vue de la carte courante, le tapis et la défausse
@@ -102,7 +105,7 @@ function setEventListeners(){
     // BOUTON DÉFAUSSER : DÉFAUSSER LA CARTE COURANTE
     discardBtn.addEventListener("click", ()=>{storeOrDiscard("discard")});
 
-    // Version mobile : détecter les tapotements et swipe sur cardView
+    // Version mobile : détecter les tapotements et swipe sur la carte
     handleTouchAndSwipes(card);
 
     // DRAW BAIZE : LE BOUTON POUR AFFICHER LA RÉSERVE
@@ -231,7 +234,7 @@ function handleDisplay(){
     if(deck.length<=0){
 
         // L'affichage du tapis
-        cardView.innerHTML = "<p>Votre deck est vide !</p>";
+        card.innerHTML = "<p>Votre deck est vide !</p>";
 
         // Les boutons
         discardBtn.classList.add("hide");
@@ -242,8 +245,11 @@ function handleDisplay(){
     // Remettre la valeur de keep à false pour le nouveau tour
     keepBtn.classList.remove("active");
 
+    // Changer l'icône sur le bouton qui déroule le tapis
+    changeBaizeDrawerIconToShowNumberOfStoredCards(baize, drawBaizeBtn);
+
     // Retirer le focus des boutons pour éviter son déclenchement au spacebar
-    cardView.blur();
+    card.blur();
     discardBtn.blur();
     keepBtn.blur();
 }
@@ -305,6 +311,26 @@ function handleTouchAndSwipes(cardView){
         }
     });
 }
+
+// Le bouton du tapis indique le nombre de carte réservées
+function changeBaizeDrawerIconToShowNumberOfStoredCards(baizeArray, baizeDrawerBtn){
+    switch(baizeArray.length){
+        case 0:
+            baizeDrawerBtn.innerHTML = displaySvgIcon("emptyBaize")
+            break;
+        case 1:
+            baizeDrawerBtn.innerHTML = displaySvgIcon("baizeOfOne")
+            break;
+        case 2:
+            baizeDrawerBtn.innerHTML = displaySvgIcon("baizeOfTwo")
+
+            break;
+        case 3:
+            baizeDrawerBtn.innerHTML = displaySvgIcon("fullBaize")
+            break;
+    }
+}
+
 // RESET
 function resetGame(){
     deck = [...cards];
