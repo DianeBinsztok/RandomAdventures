@@ -21,7 +21,6 @@ const icons = [
     }
 ];
 function displaySvgIcon(iconName){
-    console.log("displaySvgIcons")
    return icons.find((icon)=>icon.name == iconName).svg;
 }
 

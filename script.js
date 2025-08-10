@@ -1,12 +1,11 @@
 import {displaySvgIcon} from "./display-svg.js";
-let test = displaySvgIcon("drawerArrow");    
-console.log(test);
+
 /* ======= VARIABLES DE MODULE ======= */
 
 // Élément d'interface : Les boutons,la vue de la carte courante, le tapis et la défausse
 let keepBtn, resetBtn, discardBtn, baizeView, discardView, baizeList, discardList, drawBaizeBtn, drawDiscardBtn;
 // La carte : là où l'affichage va changer
-let card, cardTitle, cardContent, cardContentImg;
+let card, cardTitle, cardImg;
 
 /* CHARGEMENT DES CARTES AU DÉBUT */
 // Les cartes récupérées après un fetch
@@ -55,11 +54,10 @@ function init(){
     // - La défausse
     discardView = document.querySelector("#discard");
     discardList = document.querySelector("#discard-list");
-    // - La carte tirées
-    card = document.querySelector("#card");
+    // - Le deck
+    card = document.querySelector("#card-view_card");
     cardTitle = document.querySelector("#card_title");
-    cardContent = document.querySelector("#card_content");
-    cardContentImg = document.querySelector("#content_img");
+    cardImg = document.querySelector("#card_img");
 
     /* II - CHARGER LES CARTES */
     fetch('./cards.json')
@@ -141,7 +139,6 @@ function drawNewRandomCard(cardsArray){
 
         // Tirer la carte à l'index généré
         let newRandomCard = cardsArray[randomIndex];
-
         return newRandomCard;
     }else{
         // Si le deck est vide, on ne renvoie rien
@@ -179,18 +176,12 @@ function displayCurrentCardOnDesignatedStack(stackString){
     // Créer un nouveau node de liste
     let newCardItem = document.createElement("li");
 
-    // Un paragraphe
-    let newCardItemParagraph = document.createElement("p");
-    // Le paragraphe contient le titre de la carte
-    newCardItemParagraph.innerText = currentCard.title;
-
     // Une image
     let newCardItemImg = document.createElement("img");
     // L'image contient l'image de la carte
     newCardItemImg.setAttribute('src', currentCard.imgUrl);
 
     // Et tout insérer dans l'item de liste
-    newCardItem.appendChild(newCardItemParagraph);
     newCardItem.appendChild(newCardItemImg);
 
     // Et l'insérer à la liste
@@ -208,7 +199,7 @@ function handleDisplay(){
 
         // L'affichage du tapis
         cardTitle.innerText = "Cliquez pour tirer une carte";
-        cardContentImg.src = "./assets/img/back.png";
+        cardImg.src = "./assets/img/back.png";
         
         // Les boutons
         discardBtn.classList.add("hide");
@@ -220,13 +211,15 @@ function handleDisplay(){
     if(deck.length>0 && currentCard){
 
         // L'affichage du tapis
-        cardTitle.innerText = "Titre de la carte courante";
-        cardContentImg.src = "./"+currentCard.imgUrl;
+        cardTitle.innerText = "Réservez ou défaussez";
+        cardImg.src = "./"+currentCard.imgUrl;
 
         // Les boutons
         discardBtn.classList.remove("hide");
         if(baize.length<3){
             keepBtn.classList.remove("hide");
+        }else{
+            cardTitle.innerText = "Défaussez - votre réserve est pleine";
         }
     }
 
@@ -234,7 +227,8 @@ function handleDisplay(){
     if(deck.length<=0){
 
         // L'affichage du tapis
-        card.innerHTML = "<p>Votre deck est vide !</p>";
+        cardTitle.innerText = "Votre deck est vide !";
+        cardImg.src = "./assets/img/empty.jpg";
 
         // Les boutons
         discardBtn.classList.add("hide");
@@ -249,7 +243,7 @@ function handleDisplay(){
     changeBaizeDrawerIconToShowNumberOfStoredCards(baize, drawBaizeBtn);
 
     // Retirer le focus des boutons pour éviter son déclenchement au spacebar
-    card.blur();
+    cardImg.blur();
     discardBtn.blur();
     keepBtn.blur();
 }
@@ -264,13 +258,13 @@ function handleTouchAndSwipes(cardView){
     const swipeThreshold = 50;
     
     // Au début du toucher
-    cardView.addEventListener("touchstart", (event) => {
+    card.addEventListener("touchstart", (event) => {
         // Enregistrer les coordonées touchées, sur les deux axes
         startX = event.touches[0].clientX;
         startY = event.touches[0].clientY;
     });
     // À la fin du contact
-    cardView.addEventListener("touchend", (event) => {
+    card.addEventListener("touchend", (event) => {
 
         // Enregistrer la différence entre le contact de départ et le contact de fin, sur les deux axes
         const endX = event.changedTouches[0].clientX;
@@ -279,12 +273,14 @@ function handleTouchAndSwipes(cardView){
         const deltaX = endX - startX;
         const deltaY = endY - startY;
     
-        // Si le seuil de détection n'est pas dépassé : c'est un tapotement.
+        /* Si le seuil de détection n'est pas dépassé : c'est un tapotement. Le tapotement est l'équivalent d'un clic : l'eventlistener est déjà présent dans setEventListeners */
+        /*
         if (Math.abs(deltaX) < swipeThreshold && Math.abs(deltaY) < swipeThreshold ){
             console.log("tapotement");
             draw();
             return;
         }
+        */
     
         // Au swipe horizontal
         if (Math.abs(deltaX) > Math.abs(deltaY)) {
@@ -337,5 +333,5 @@ function resetGame(){
     currentCard = null;
     baizeList.innerHTML="";
     discardList.innerHTML="";
-    handleDisplay(deck, cardView, currentCard, keepBtn, resetBtn);
+    handleDisplay();
 }

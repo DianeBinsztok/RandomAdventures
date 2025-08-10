@@ -61,27 +61,31 @@ footer a{
     align-items: center;
     justify-content: center;
 }
-/*Mise en page de la vue de la carte pour éviter que la hauteur varie entre les différentes vues*/
-#card{
-    height: 85%;
-    width: 100%;
-}
+
 /*Mise en page à l'intérieur de la carte pour éviter que la hauteur de l'image varie par rapport au titre */
-#card_heading{
+#card-view_heading{
     height: 15%;
+}
+#card-view_card{
+    height: 75%;
+}
+#card-view_decisions{
+    height: 10%;
+}
+
+#card-view_heading{
     display: flex;
     align-items: center;
     justify-content: center;
 }
-#card_heading h2{
+#card_title{
     text-align: center;
     font-size: 1.5em;
 }
-#card_content{
-    height: 85%;
+#card_vew_card{
+    height: 70%;
 }
-
-#card img{
+#card_img{
     box-sizing: border-box;
     height: 100%;
     width: 100%;
@@ -90,14 +94,14 @@ footer a{
     mix-blend-mode: multiply;
 }
 /* BOUTONS DÉFAUSSER ET RÉSERVER */
-#decisions{
+#card-vew_decisions{
     height: 15%;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-#decisions button{
+#card-vew_decisions button{
     margin: 1rem;
 }
 
@@ -257,8 +261,7 @@ footer a{
 
 /*
 #card-view{background-color: blueviolet;}
-#card{background-color: blue;}
-#card_heading{background-color: green;}
-#card_content{background-color: yellowgreen;}
-#decisions{background-color: yellow;}
+#card-view_heading{background-color: blue;}
+#card-view_card{background-color: green;}
+#decisions{background-color: yellowgreen;}
 */
