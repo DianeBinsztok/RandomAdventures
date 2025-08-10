@@ -5,7 +5,7 @@ import {displaySvgIcon} from "./display-svg.js";
 // Élément d'interface : Les boutons,la vue de la carte courante, le tapis et la défausse
 let keepBtn, resetBtn, discardBtn, baizeView, discardView, baizeList, discardList, drawBaizeBtn, drawDiscardBtn;
 // La carte : là où l'affichage va changer
-let card, cardTitle, cardImg;
+let card, cardTitle, cardImgContent, cardImgIllustration;
 
 /* CHARGEMENT DES CARTES AU DÉBUT */
 // Les cartes récupérées après un fetch
@@ -56,8 +56,10 @@ function init(){
     discardList = document.querySelector("#discard-list");
     // - Le deck
     card = document.querySelector("#card-view_card");
+    notification = document.querySelector("#notification"); 
     cardTitle = document.querySelector("#card_title");
-    cardImg = document.querySelector("#card_img");
+    cardImgContent = document.querySelector("#card_img_content");
+    cardImgIllustration = document.querySelector("#card_img_illustration");
 
     /* II - CHARGER LES CARTES */
     fetch('./cards.json')
@@ -77,6 +79,9 @@ function init(){
 
             /* III - ACTIVER LES EVENTLISTENERS */
             setEventListeners();
+
+            /* IV - METTRE EN PLACE L'AFFICHAGE DE DÉBUT DE PARTIE */
+            handleDisplay();
         })
     .catch(error => console.error(error));
 }
@@ -162,7 +167,7 @@ function storeOrDiscard(stackString){
             displayCurrentCardOnDesignatedStack("baize");
             baize.push(currentCard);
         }else{
-            console.log("Pas plus de trois cartes en réserve");
+            window.alert("☝ Votre réserve est pleine");
             return;
         }
     }else if(stackString=="discard"){
@@ -179,7 +184,7 @@ function displayCurrentCardOnDesignatedStack(stackString){
     // Une image
     let newCardItemImg = document.createElement("img");
     // L'image contient l'image de la carte
-    newCardItemImg.setAttribute('src', currentCard.imgUrl);
+    newCardItemImg.setAttribute('src', currentCard.contentImgUrl);
 
     // Et tout insérer dans l'item de liste
     newCardItem.appendChild(newCardItemImg);
@@ -194,13 +199,13 @@ function displayCurrentCardOnDesignatedStack(stackString){
 }
 // AFFICHAGE DES BOUTONS ET DE LA CARTE COURANTE - OU DU MESSAGE
 function handleDisplay(){
-    // I - LE DECK EST PLEIN MAIS PAS DE CARTE COURANTE 
+    // I - LE DECK, N'EST PAS VIDE MAIS PAS DE CARTE COURANTE 
     if(deck.length>0 && !currentCard){
-
+        console.log("deck.length>0 && !currentCard");
         // L'affichage du tapis
         cardTitle.innerText = "Cliquez pour tirer une carte";
-        cardImg.src = "./assets/img/back.png";
-        
+        cardImgContent.src = "./assets/img/back.png";
+        cardImgIllustration.classList.add("hide");
         // Les boutons
         discardBtn.classList.add("hide");
         keepBtn.classList.add("hide");
@@ -211,15 +216,16 @@ function handleDisplay(){
     if(deck.length>0 && currentCard){
 
         // L'affichage du tapis
-        cardTitle.innerText = "Réservez ou défaussez";
-        cardImg.src = "./"+currentCard.imgUrl;
+        cardTitle.innerText = currentCard.title;
+        cardImgContent.src = "./"+currentCard.contentImgUrl;
+        cardImgIllustration.src = "./"+currentCard.illustrationImgUrl;
+        cardImgIllustration.classList.remove("hide");
+
 
         // Les boutons
         discardBtn.classList.remove("hide");
         if(baize.length<3){
             keepBtn.classList.remove("hide");
-        }else{
-            cardTitle.innerText = "Défaussez - votre réserve est pleine";
         }
     }
 
@@ -228,7 +234,10 @@ function handleDisplay(){
 
         // L'affichage du tapis
         cardTitle.innerText = "Votre deck est vide !";
-        cardImg.src = "./assets/img/empty.jpg";
+        cardImgContent.src = "./assets/img/empty.jpg";
+        cardImgIllustration.src = "./assets/img/empty.jpg";
+        cardImgIllustration.classList.add("hide");
+
 
         // Les boutons
         discardBtn.classList.add("hide");
@@ -243,7 +252,7 @@ function handleDisplay(){
     changeBaizeDrawerIconToShowNumberOfStoredCards(baize, drawBaizeBtn);
 
     // Retirer le focus des boutons pour éviter son déclenchement au spacebar
-    cardImg.blur();
+    cardImgContent.blur();
     discardBtn.blur();
     keepBtn.blur();
 }

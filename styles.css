@@ -48,7 +48,7 @@ header, main, footer{
     text-align: center;
     width: 100%;
 }
-footer a{
+footer a, .stack-title{
     color: antiquewhite;
 }
 #card-view{
@@ -64,55 +64,70 @@ footer a{
 
 /*Mise en page à l'intérieur de la carte pour éviter que la hauteur de l'image varie par rapport au titre */
 #card-view_heading{
-    height: 15%;
-}
-#card-view_card{
-    height: 75%;
-}
-#card-view_decisions{
     height: 10%;
 }
-
+#card-view_card{
+    height: 80%;
+}
+#card-vew_decisions{
+    height: 10%;
+}
+/* Mise en forme de chaque élément de card*/
 #card-view_heading{
+    box-sizing: border-box;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 1rem;
+}
+#card-view_card{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: scroll;
+    /*Cacher la scrollbar*/
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+/* Cacher la  scrollbar pour Chrome, Safari et Opera */
+#card-view_card::-webkit-scrollbar, #discard-list::-webkit-scrollbar {
+    display: none;
 }
 #card_title{
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1.4em;
 }
-#card_vew_card{
-    height: 70%;
-}
-#card_img{
+
+.card_img{
     box-sizing: border-box;
-    height: 100%;
-    width: 100%;
+    height: 98%;
+    /*width: 100%;*/
     object-fit: contain;
     border-radius: 10px;
     mix-blend-mode: multiply;
+    background-color: rgb(6, 59, 80);
+    padding: 0.2rem;
+    margin: 0.7rem;
 }
 /* BOUTONS DÉFAUSSER ET RÉSERVER */
-#card-vew_decisions{
-    height: 15%;
+#card-vew_decisions:not(.hide){
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 #card-vew_decisions button{
-    margin: 1rem;
-}
-
-#keep-in-deck, #reset-deck, #discard-btn{
+    margin: 0.6rem;
     font-size: 1em;
-    padding: 0.7rem;
+    padding: 0.6rem;
     background-color: antiquewhite;
     border: 1px solid rgb(6, 59, 80);
     border-radius: 5px;
 }
-#keep-in-deck:hover, #reset-deck:hover, #discard-btn:hover{
+
+#card-vew_decisions button:hover{
     background-color: rgb(6, 59, 80);
     color: antiquewhite;
     font-weight: bold;
@@ -223,6 +238,10 @@ footer a{
     #discard {
         transform: translateX(-90%);
     }
+    /*Carte : illustration et contenu en colonne*/
+    #card-view_card{
+        flex-direction: column;
+    }
 
 }
 /* PETITES TABLETTES */
@@ -238,6 +257,10 @@ footer a{
     }
     #discard {
         transform: translateX(-95%);
+    }
+    /*Carte : illustration et contenu en colonne*/
+    #card-view_card{
+        flex-direction: column;
     }
 }
 
@@ -256,6 +279,10 @@ footer a{
     #discard {
         right:66%;
         transform: translateX(-93%);
+    }
+    /*Carte : illustration et contenu côte à côte*/
+    #card-view_card{
+        
     }
 }
 
