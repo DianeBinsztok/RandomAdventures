@@ -56,7 +56,6 @@ function init(){
     discardList = document.querySelector("#discard-list");
     // - Le deck
     card = document.querySelector("#card-view_card");
-    notification = document.querySelector("#notification"); 
     cardTitle = document.querySelector("#card_title");
     cardImgContent = document.querySelector("#card_img_content");
     cardImgIllustration = document.querySelector("#card_img_illustration");
@@ -181,13 +180,31 @@ function displayCurrentCardOnDesignatedStack(stackString){
     // Créer un nouveau node de liste
     let newCardItem = document.createElement("li");
 
+    // Le titre de la carte
+    let newCardItemTitle = document.createElement("h3");
+    newCardItemTitle.classList.add("side-card_title");
+    newCardItemTitle.innerText = currentCard.title;
+
+    // L'image du contenu
+    let newCardItemContentImg = document.createElement("img");
+    newCardItemContentImg.setAttribute('src', currentCard.contentImgUrl);
+
+    // L'image d'illustration
+    let newCardItemIllustrationImg = document.createElement("img");
+    newCardItemIllustrationImg.setAttribute('src', currentCard.illustrationImgUrl);
+
+
+/*
     // Une image
     let newCardItemImg = document.createElement("img");
     // L'image contient l'image de la carte
     newCardItemImg.setAttribute('src', currentCard.contentImgUrl);
-
+*/
     // Et tout insérer dans l'item de liste
-    newCardItem.appendChild(newCardItemImg);
+    newCardItem.appendChild(newCardItemTitle);
+    newCardItem.appendChild(newCardItemIllustrationImg);
+    newCardItem.appendChild(newCardItemContentImg);
+
 
     // Et l'insérer à la liste
     if(stackString == "baize"){

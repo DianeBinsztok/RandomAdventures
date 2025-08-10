@@ -48,7 +48,7 @@ header, main, footer{
     text-align: center;
     width: 100%;
 }
-footer a, .stack-title{
+footer a, .stack-title, .side-card_title{
     color: antiquewhite;
 }
 #card-view{
