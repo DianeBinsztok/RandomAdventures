@@ -3,9 +3,14 @@ import {displaySvgIcon} from "./display-svg.js";
 /* ======= VARIABLES DE MODULE ======= */
 
 // Élément d'interface : Les boutons,la vue de la carte courante, le tapis et la défausse
-let keepBtn, resetBtn, discardBtn, baizeView, discardView, baizeList, discardList, drawBaizeBtn, drawDiscardBtn;
+let resetBtn, baizeView, discardView, baizeList, discardList, drawBaizeBtn, drawDiscardBtn;
 // La carte : là où l'affichage va changer
 let card, cardTitle, cardImgContent, cardImgIllustration;
+// Les boutons : 
+// - Défausser ou réserver la carte courante
+let discardBtn, keepBtn;
+// - Afficher la carte courante en plein écran 
+let fullscreenBtn, closeFullscreenBtn;
 
 /* CHARGEMENT DES CARTES AU DÉBUT */
 // Les cartes récupérées après un fetch
@@ -34,15 +39,18 @@ function init(){
     
     /* I - ÉLÉMENTS D'INTERFACES */
 
-    /* Les boutons */
+    /* LES BOUTONS */
     // - La zone où sont affichés les boutons
     discardBtn = document.querySelector("#discard-btn");
     // - Garder la carte dans le deck
-    keepBtn = document.querySelector("#keep-in-deck");
+    keepBtn = document.querySelector("#keep-in-deck-btn");
     // - Rejouer
     resetBtn = document.querySelector("#reset-deck");
-
-    /* Le tapis */   
+    // - Agrandir la carte courante
+    fullscreenBtn = document.querySelector("#fullscreen-btn");
+    // - Enlever le plein écran de la carte courante
+    closeFullscreenBtn = document.querySelector("#close-fullscreen-btn");
+    /* LE TAPIS */   
     // - Le bouton pour déplier la réserve
     drawBaizeBtn = document.querySelector("#draw-baize");
     // - Le bouton pour déplier la défausse
@@ -119,6 +127,17 @@ function setEventListeners(){
         discardView.classList.toggle("active");
     });
 
+    // BOUTON FULLSCREEN : AFFICHER UNE IMAGE EN PLEIN ÉCRAN POUR MIEUX LIRE LE CONTENU
+    fullscreenBtn.addEventListener("click",()=>{
+        card.classList.add("fullscreen");
+        closeFullscreenBtn.classList.remove("hide")
+    });
+    // BOUTON POUR SORTIR DU PLEIN ÉCRAN
+    closeFullscreenBtn.addEventListener("click",()=>{
+        card.classList.remove("fullscreen");
+        closeFullscreenBtn.classList.add("hide")
+    });
+
     // BOUTON RESET : RÉAFFECTER LE TABLEAU DECK POUR RELANCER LA PARTIE
     resetBtn.addEventListener("click", resetGame);
 }
@@ -193,17 +212,11 @@ function displayCurrentCardOnDesignatedStack(stackString){
     let newCardItemIllustrationImg = document.createElement("img");
     newCardItemIllustrationImg.setAttribute('src', currentCard.illustrationImgUrl);
 
-
-/*
-    // Une image
-    let newCardItemImg = document.createElement("img");
-    // L'image contient l'image de la carte
-    newCardItemImg.setAttribute('src', currentCard.contentImgUrl);
-*/
     // Et tout insérer dans l'item de liste
     newCardItem.appendChild(newCardItemTitle);
-    newCardItem.appendChild(newCardItemIllustrationImg);
     newCardItem.appendChild(newCardItemContentImg);
+    newCardItem.appendChild(newCardItemIllustrationImg);
+
 
 
     // Et l'insérer à la liste
@@ -218,15 +231,17 @@ function displayCurrentCardOnDesignatedStack(stackString){
 function handleDisplay(){
     // I - LE DECK, N'EST PAS VIDE MAIS PAS DE CARTE COURANTE 
     if(deck.length>0 && !currentCard){
-        console.log("deck.length>0 && !currentCard");
+
         // L'affichage du tapis
         cardTitle.innerText = "Cliquez pour tirer une carte";
         cardImgContent.src = "./assets/img/back.png";
         cardImgIllustration.classList.add("hide");
+
         // Les boutons
         discardBtn.classList.add("hide");
         keepBtn.classList.add("hide");
         resetBtn.classList.add("hide");
+        fullscreenBtn.classList.add("hide");
     }
     
     // II - IL RESTE DES CARTES DANS LE DECK ET UNE CARTE COURANTE
@@ -238,9 +253,9 @@ function handleDisplay(){
         cardImgIllustration.src = "./"+currentCard.illustrationImgUrl;
         cardImgIllustration.classList.remove("hide");
 
-
         // Les boutons
         discardBtn.classList.remove("hide");
+        fullscreenBtn.classList.remove("hide");
         if(baize.length<3){
             keepBtn.classList.remove("hide");
         }
@@ -259,6 +274,7 @@ function handleDisplay(){
         // Les boutons
         discardBtn.classList.add("hide");
         keepBtn.classList.add("hide");
+        fullscreenBtn.classList.add("hide");
         resetBtn.classList.remove("hide");
     }
 

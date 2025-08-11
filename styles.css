@@ -30,10 +30,10 @@ body{
     height:100dvh;
 }
 header{
-    height:15dvh;
+    height:12dvh;
 }
 main{
-    height:80dvh;
+    height:83dvh;
 }
 footer{
     height:5dvh;
@@ -72,6 +72,33 @@ footer a, .stack-title, .side-card_title{
 #card-vew_decisions{
     height: 10%;
 }
+/* Afficher la carte en plein écran */
+#card-view_card.fullscreen{
+    position: absolute;
+    top:0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    z-index: 3;
+    /* Laisser un espace pour le bouton de fermeture */
+    padding-top: 2.6rem;
+}
+#close-fullscreen-btn{
+    background-color:black;
+    position: fixed;
+    top:5px;
+    right: 5px;
+    color: antiquewhite; 
+    border-radius: 50px; 
+    padding: 1rem;
+}
+#card-view_card.fullscreen img{
+    mix-blend-mode:normal;
+    width: 98%;
+}
 /* Mise en forme de chaque élément de card*/
 #card-view_heading{
     box-sizing: border-box;
@@ -103,11 +130,10 @@ footer a, .stack-title, .side-card_title{
 .card_img{
     box-sizing: border-box;
     height: 98%;
-    /*width: 100%;*/
     object-fit: contain;
     border-radius: 10px;
     mix-blend-mode: multiply;
-    background-color: rgb(6, 59, 80);
+    background-color: black;
     padding: 0.2rem;
     margin: 0.7rem;
 }
