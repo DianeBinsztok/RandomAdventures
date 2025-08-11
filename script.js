@@ -128,15 +128,9 @@ function setEventListeners(){
     });
 
     // BOUTON FULLSCREEN : AFFICHER UNE IMAGE EN PLEIN ÉCRAN POUR MIEUX LIRE LE CONTENU
-    fullscreenBtn.addEventListener("click",()=>{
-        card.classList.add("fullscreen");
-        closeFullscreenBtn.classList.remove("hide")
-    });
+    fullscreenBtn.addEventListener("click",()=>toggleCurrentCardFullscreen("on"));
     // BOUTON POUR SORTIR DU PLEIN ÉCRAN
-    closeFullscreenBtn.addEventListener("click",()=>{
-        card.classList.remove("fullscreen");
-        closeFullscreenBtn.classList.add("hide")
-    });
+    closeFullscreenBtn.addEventListener("click",()=>toggleCurrentCardFullscreen("off"));
 
     // BOUTON RESET : RÉAFFECTER LE TABLEAU DECK POUR RELANCER LA PARTIE
     resetBtn.addEventListener("click", resetGame);
@@ -330,10 +324,12 @@ function handleTouchAndSwipes(cardView){
             if (deltaX > 0) {
                 console.log("➞");
                 storeOrDiscard("baize");
+                toggleCurrentCardFullscreen("off");
             // Movement négatif sur l'axe X = swipe à gauche ➞ DÉFAUSSER LA CARTE COURANTE
             } else {
                 console.log("🠔");
                 storeOrDiscard("discard");
+                toggleCurrentCardFullscreen("off");
             }
         } 
         // Au swipe vertical
@@ -349,7 +345,6 @@ function handleTouchAndSwipes(cardView){
         }
     });
 }
-
 // Le bouton du tapis indique le nombre de carte réservées
 function changeBaizeDrawerIconToShowNumberOfStoredCards(baizeArray, baizeDrawerBtn){
     switch(baizeArray.length){
@@ -368,7 +363,16 @@ function changeBaizeDrawerIconToShowNumberOfStoredCards(baizeArray, baizeDrawerB
             break;
     }
 }
-
+// Mettre la carte courante en plein écran
+function toggleCurrentCardFullscreen(onOrOffString){
+    if(onOrOffString === "on"){
+        card.classList.add("fullscreen");
+        closeFullscreenBtn.classList.remove("hide");
+    }else if(onOrOffString === "off"){
+        card.classList.remove("fullscreen");
+        closeFullscreenBtn.classList.add("hide");
+    }
+}
 // RESET
 function resetGame(){
     deck = [...cards];
