@@ -20,7 +20,7 @@ let deck = [];
 // Les cartes réservées
 let baize = [];
 // Les cartes défaussées
-let discardedCards=[];
+//let discardedCards=[];
 
 
 // La carte courante : aucune carte n'est affichée au lancement du jeu
@@ -176,19 +176,19 @@ function storeOrDiscard(stackString){
     console.log("baize.length : ", baize.length);
     if(stackString=="baize"){
         if(baize.length<3){
-            displayCurrentCardOnDesignatedStack("baize");
+            displayCardOnDesignatedStack(currentCard, "baize");
             baize.push(currentCard);
         }else{
             window.alert("☝ Votre réserve est pleine");
             return;
         }
     }else if(stackString=="discard"){
-        displayCurrentCardOnDesignatedStack("discard");
+        displayCardOnDesignatedStack(currentCard, "discard");
     }
     discardCurrentCard();
 }
 // AFFICHER LES CARTES GARDÉES
-function displayCurrentCardOnDesignatedStack(stackString){
+function displayCardOnDesignatedStack(card, stackString){
 
     // Créer un nouveau node de liste
     let newCardItem = document.createElement("li");
@@ -196,21 +196,27 @@ function displayCurrentCardOnDesignatedStack(stackString){
     // Le titre de la carte
     let newCardItemTitle = document.createElement("h3");
     newCardItemTitle.classList.add("side-card_title");
-    newCardItemTitle.innerText = currentCard.title;
+    newCardItemTitle.innerText = card.title;
 
     // L'image du contenu
     let newCardItemContentImg = document.createElement("img");
-    newCardItemContentImg.setAttribute('src', currentCard.contentImgUrl);
+    newCardItemContentImg.setAttribute('src', card.contentImgUrl);
 
     // L'image d'illustration
     let newCardItemIllustrationImg = document.createElement("img");
-    newCardItemIllustrationImg.setAttribute('src', currentCard.illustrationImgUrl);
+    newCardItemIllustrationImg.setAttribute('src', card.illustrationImgUrl);
+
+    // Un bouton pour défausser la carte
+    let discardBtn = document.createElement("button");
+    discardBtn.innerText = "🠔 Défausser";
+    discardBtn.id = card.id;
+    discardBtn.addEventListener("click", (event)=>{discardAStoredCard(event.target)})
 
     // Et tout insérer dans l'item de liste
     newCardItem.appendChild(newCardItemTitle);
     newCardItem.appendChild(newCardItemContentImg);
     newCardItem.appendChild(newCardItemIllustrationImg);
-
+    newCardItem.appendChild(discardBtn);
 
 
     // Et l'insérer à la liste
@@ -372,6 +378,15 @@ function toggleCurrentCardFullscreen(onOrOffString){
         card.classList.remove("fullscreen");
         closeFullscreenBtn.classList.add("hide");
     }
+}
+// Défausser une carte depuis la réserve
+function discardAStoredCard(discardBtn){
+    let cardIndex = parseInt(discardBtn.id, 10);
+    let cardToRemoveFromBaizeArray =  baize.find(card=>card.id === cardIndex);
+    baize.splice(baize.indexOf(cardToRemoveFromBaizeArray), 1);
+    baizeList.removeChild(discardBtn.parentNode);
+    changeBaizeDrawerIconToShowNumberOfStoredCards(baize, drawBaizeBtn);
+    displayCardOnDesignatedStack(cardToRemoveFromBaizeArray, "discard");
 }
 // RESET
 function resetGame(){

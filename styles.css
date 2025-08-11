@@ -216,7 +216,6 @@ footer a, .stack-title, .side-card_title{
     justify-content: flex-start;
     align-items: center;
     height:100%;
-    width:90%;
     padding:1rem;
     /*Cacher la scrollbar*/
     -ms-overflow-style: none;  /* IE and Edge */
@@ -235,7 +234,7 @@ footer a, .stack-title, .side-card_title{
     justify-content: flex-start;
     list-style-type: none;
     text-align: center;
-    width: 80%;
+    width: 100%;
     height: auto;
     margin: 1rem;
 }
