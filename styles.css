@@ -138,13 +138,13 @@ footer a, .stack-title, .side-card_title{
     margin: 0.7rem;
 }
 /* BOUTONS DÉFAUSSER ET RÉSERVER */
-#card-vew_decisions:not(.hide){
+#card-view_decisions:not(.hide){
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-#card-vew_decisions button{
+#card-view_decisions button{
     margin: 0.6rem;
     font-size: 1em;
     padding: 0.6rem;
@@ -153,7 +153,7 @@ footer a, .stack-title, .side-card_title{
     border-radius: 5px;
 }
 
-#card-vew_decisions button:hover{
+#card-view_decisions button:hover{
     background-color: rgb(6, 59, 80);
     color: antiquewhite;
     font-weight: bold;
@@ -177,12 +177,14 @@ footer a, .stack-title, .side-card_title{
     transform: translateX(0%);
     z-index: 2;
 }
+/* Le bouton qui déroule la défausse */
 #discard svg{
     transition: all 0.5s ease-in-out;
 }
 #discard.active svg{
     transform: rotate(180deg);
 }
+/* Les boutons qui déroulent la défausse et la réserve */ 
 #draw-baize, #draw-discard{
     display: flex;
     flex-direction: column;
@@ -225,6 +227,22 @@ footer a, .stack-title, .side-card_title{
 #baize-list::-webkit-scrollbar, #discard-list::-webkit-scrollbar {
     display: none;
 }
+/* Le titre de la défausse et de la réserve */
+.stack-title{
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid antiquewhite;
+}
+/* Les boutons pour défausser une carte réservée */
+.discard-stored-card_btn{
+    margin-top: 1rem;
+    font-size: 1em;
+    padding: 0.6rem;
+    border: 1px solid antiquewhite;
+    color: antiquewhite;
+    font-weight: bold;
+    background-color:black;
+    border-radius: 5px;
+}
 
 #baize-list li, #discard-list li{
     box-sizing: border-box;
@@ -237,13 +255,18 @@ footer a, .stack-title, .side-card_title{
     width: 100%;
     height: auto;
     margin: 1rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid antiquewhite;
 }
 #baize-list li img, #discard-list li img{
     box-sizing: border-box;
     height: 100%;
     width: 100%;
 }
-
+/*Le titre de chaque carte*/
+.side-card_title{
+    font-size: 2em;
+}
 .hide{
     display: none;
 }

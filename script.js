@@ -208,6 +208,7 @@ function displayCardOnDesignatedStack(card, stackString){
 
     // Un bouton pour défausser la carte
     let discardBtn = document.createElement("button");
+    discardBtn.classList.add("discard-stored-card_btn");
     discardBtn.innerText = "🠔 Défausser";
     discardBtn.id = card.id;
     discardBtn.addEventListener("click", (event)=>{discardAStoredCard(event.target)})
