@@ -3,60 +3,105 @@
         "id":0,
         "series":"",
         "title":"La Meute du Chien Bleu",
-        "imgUrl":"assets/img/cards/IMG_2652.JPG"
+        "contentImgUrl":"assets/img/cards/la-meute-du-chien-bleu.JPG",
+        "illustrationImgUrl":"assets/img/cards/la-meute-du-chien-bleu_illus.JPG"
     },
     {
         "id":1,
         "series":"",
         "title":"Yak-So, guide et chamane",
-        "imgUrl":"assets/img/cards/IMG_2653.JPG"
+        "contentImgUrl":"assets/img/cards/yak-so-guide-et-chamane.JPG",
+        "illustrationImgUrl":"assets/img/cards/yak-so-guide-et-chamane_illus.JPG"
     },
     {
         "id":2,
         "series":"",
         "title":"Chauves-souris écarlates",
-        "imgUrl":"assets/img/cards/IMG_2654.JPG"
+        "contentImgUrl":"assets/img/cards/chauve-souris-ecarlates.JPG",
+        "illustrationImgUrl":"assets/img/cards/chauve-souris-ecarlates_illus.JPG"
     },
     {
         "id":3,
         "series":"",
         "title":"Le démon Terraxus",
-        "imgUrl":"assets/img/cards/IMG_2655.JPG"
+        "contentImgUrl":"assets/img/cards/le-demon-terraxus.JPG",
+        "illustrationImgUrl":"assets/img/cards/le-demon-terraxus_illus.JPG"
     },
     {
         "id":4,
         "series":"",
         "title":"Dulcinia la mule",
-        "imgUrl":"assets/img/cards/IMG_2656.JPG"
+        "contentImgUrl":"assets/img/cards/dulcinia-la-mule.JPG",
+        "illustrationImgUrl":"assets/img/cards/dulcinia-la-mule_illus.JPG"
     },
     {
         "id":5,
         "series":"",
         "title":"Le sorcier du givre",
-        "imgUrl":"assets/img/cards/IMG_2657.JPG"
+        "contentImgUrl":"assets/img/cards/le-sorcier-du-givre.JPG",
+        "illustrationImgUrl":"assets/img/cards/le-sorcier-du-givre_illus.JPG"
     },
     {
         "id":6,
         "series":"",
         "title":"Bandits, bandits",
-        "imgUrl":"assets/img/cards/IMG_2658.JPG"
+        "contentImgUrl":"assets/img/cards/bandits-bandits.JPG",
+        "illustrationImgUrl":"assets/img/cards/bandits-bandits_illus.JPG"
     },
     {
         "id":7,
         "series":"",
         "title":"Antipape, anti-tout",
-        "imgUrl":"assets/img/cards/IMG_2660.JPG"
+        "contentImgUrl":"assets/img/cards/antipape-anti-tout.JPG",
+        "illustrationImgUrl":"assets/img/cards/antipape-anti-tout_illus.JPG"
     },
     {
         "id":8,
         "series":"",
         "title":"Bazar bizarre",
-        "imgUrl":"assets/img/cards/IMG_2661.JPG"
+        "contentImgUrl":"assets/img/cards/bazar-bizarre.JPG",
+        "illustrationImgUrl":"assets/img/cards/bazar-bizarre_illus.JPG"
     },
     {
         "id":9,
         "series":"",
         "title":"Ce soir dans votre ville!",
-        "imgUrl":"assets/img/cards/IMG_2662.JPG"
+        "contentImgUrl":"assets/img/cards/ce-soir-dans-votre-ville.JPG",
+        "illustrationImgUrl":"assets/img/cards/ce-soir-dans-votre-ville_illus.JPG"
+    },
+    {
+        "id":10,
+        "series":"",
+        "title":"La tombe des bienheureux",
+        "contentImgUrl":"assets/img/cards/la-tombe-des-bienheureux.JPG",
+        "illustrationImgUrl":"assets/img/cards/la-tombe-des-bienheureux_illus.JPG"
+    },
+    {
+        "id":11,
+        "series":"",
+        "title":"Le cairn améthyste",
+        "contentImgUrl":"assets/img/cards/le-cairn-amethyste.JPG",
+        "illustrationImgUrl":"assets/img/cards/le-cairn-amethyste_illus.JPG"
+    },
+    {
+        "id":12,
+        "series":"",
+        "title":"Le puits du destin",
+        "contentImgUrl":"assets/img/cards/le-puits-du-destin.JPG",
+        "illustrationImgUrl":"assets/img/cards/le-puits-du-destin_illus.JPG"
+    },
+    {
+        "id":13,
+        "series":"",
+        "title":"Les libres prairies",
+        "contentImgUrl":"assets/img/cards/les-libres-prairies.JPG",
+        "illustrationImgUrl":"assets/img/cards/les-libres-prairies_illus.JPG"
+    },
+    {
+        "id":14,
+        "series":"",
+        "title":"Les monts griffus",
+        "contentImgUrl":"assets/img/cards/les-monts-griffus.JPG",
+        "illustrationImgUrl":"assets/img/cards/les-monts-griffus_illus.JPG"
     }
 ]

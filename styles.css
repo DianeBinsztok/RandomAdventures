@@ -1,12 +1,10 @@
 /*I - GÉNÉRAL*/
 html{
-    height: 100%;
     margin: 0;
     padding: 0;
 }
 body{
     box-sizing: border-box;
-    height: 100dvh;
     background-color: antiquewhite;
 	display: flex;
 	flex-direction: column;
@@ -16,6 +14,10 @@ body{
 }
 
 header, footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: rgb(6, 59, 80);
     color: antiquewhite;
 }
@@ -23,133 +25,317 @@ header{
     font-size: 1em;
     font-weight: bold;
 }
-main{
-    box-sizing: border-box;
-    height:100%;
-    width: 100%;
-    display: flex;
-	flex-direction: column;
-    align-items:center;
-    justify-content: center;
-    padding: 1rem;
-}
-header, footer{
-    display: flex;
-    justify-content: center;
-    text-align: center;
+/*Mise en page pour éviter le scroll sur tous les devices: */
+body{
+    height:100dvh;
 }
 header{
-    padding: 0.5rem;
+    height:12dvh;
 }
-footer a{
-    display: inline;
+main{
+    height:83dvh;
+}
+footer{
+    height:5dvh;
+}
+
+header, main, footer{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+footer a, .stack-title, .side-card_title{
     color: antiquewhite;
 }
-#baize{
-    height: 25%;
-    width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding:1rem;
-    background-color: green;
-}
-#baize-list{
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+#card-view{
     height: 100%;
-    padding:1rem;
-}
-#baize-list li{
+    width: 100%;
+    padding: 0.7rem;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    list-style-type: none;
+    justify-content: center;
+}
+
+/*Mise en page à l'intérieur de la carte pour éviter que la hauteur de l'image varie par rapport au titre */
+#card-view_heading{
+    height: 10%;
+}
+#card-view_card{
+    height: 80%;
+}
+#card-vew_decisions{
+    height: 10%;
+}
+/* Afficher la carte en plein écran */
+#card-view_card.fullscreen{
+    position: absolute;
+    top:0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    z-index: 3;
+    /* Laisser un espace pour le bouton de fermeture */
+    padding-top: 2.6rem;
+}
+#close-fullscreen-btn{
+    background-color:black;
+    position: fixed;
+    top:5px;
+    right: 5px;
+    color: antiquewhite; 
+    border-radius: 50px; 
+    padding: 1rem;
+}
+#card-view_card.fullscreen img{
+    mix-blend-mode:normal;
+    width: 98%;
+}
+/* Mise en forme de chaque élément de card*/
+#card-view_heading{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+#card-view_card{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: scroll;
+    /*Cacher la scrollbar*/
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+/* Cacher la  scrollbar pour Chrome, Safari et Opera */
+#card-view_card::-webkit-scrollbar, #discard-list::-webkit-scrollbar {
+    display: none;
+}
+#card_title{
     text-align: center;
-    height: 100%;
+    font-size: 1.4em;
+}
+
+.card_img{
+    box-sizing: border-box;
+    height: 98%;
+    object-fit: contain;
+    border-radius: 10px;
+    mix-blend-mode: multiply;
+    background-color: black;
+    padding: 0.2rem;
+    margin: 0.7rem;
+}
+/* BOUTONS DÉFAUSSER ET RÉSERVER */
+#card-view_decisions:not(.hide){
     width: 100%;
-    background-color:red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-#baize-list li p{
-    box-sizing: border-box;
-}
-#baize-list li img{
-    box-sizing: border-box;
-    max-height: 90%;
-    width: auto;
-}
-#keep-in-deck, #reset-deck{
+#card-view_decisions button{
+    margin: 0.6rem;
     font-size: 1em;
-    padding: 0.7rem;
+    padding: 0.6rem;
     background-color: antiquewhite;
     border: 1px solid rgb(6, 59, 80);
     border-radius: 5px;
 }
-#keep-in-deck.active, #reset-deck:hover{
+
+#card-view_decisions button:hover{
     background-color: rgb(6, 59, 80);
     color: antiquewhite;
     font-weight: bold;
 }
-#card-view{
-    box-sizing: border-box;
+
+
+/* LA RÉSERVE ET LA DÉFAUSSE */
+#baize, #discard{
+    display: flex;
+    position: fixed; 
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    transition: all 0.5s ease-in-out;
+}
+#baize.active, #discard.active{
+    background-color: black;
+    transform: translateX(0%);
+    z-index: 2;
+}
+/* Le bouton qui déroule la défausse */
+#discard svg{
+    transition: all 0.5s ease-in-out;
+}
+#discard.active svg{
+    transform: rotate(180deg);
+}
+/* Les boutons qui déroulent la défausse et la réserve */ 
+#draw-baize, #draw-discard{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height:75%;
-    width: 100%;
-    padding: 0.7rem;
+    padding-top:1.5rem;
+    padding-bottom:1.5rem;
+    align-self:center;
+    position: sticky;
+    /*top : 300px;*/
+    background-color: black;
+    color: antiquewhite;
+    border: none;
 }
-#card-view h2{
+/* Le bouton de la réserve dépasse à droite de l'écran */
+#draw-baize{
+    left:0;
+    border-radius: 50px 0 0 50px;
+}
+/* Le bouton de la défausse dépasse à gauche de l'écran */
+#draw-discard{
+    right:0;
+    border-radius: 0 50px 50px 0;
+}
+#baize-list, #discard-list{
+    box-sizing: border-box;
+    overflow: scroll!important;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height:100%;
+    padding:1rem;
+    /*Cacher la scrollbar*/
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+/* Cacher la  scrollbar pour Chrome, Safari et Opera */
+#baize-list::-webkit-scrollbar, #discard-list::-webkit-scrollbar {
+    display: none;
+}
+/* Le titre de la défausse et de la réserve */
+.stack-title{
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid antiquewhite;
+}
+/* Les boutons pour défausser une carte réservée */
+.discard-stored-card_btn{
+    margin-top: 1rem;
+    font-size: 1em;
+    padding: 0.6rem;
+    border: 1px solid antiquewhite;
+    color: antiquewhite;
+    font-weight: bold;
+    background-color:black;
+    border-radius: 5px;
+}
+
+#baize-list li, #discard-list li{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    list-style-type: none;
     text-align: center;
-    font-size: 1.2em;
+    width: 100%;
+    height: auto;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid antiquewhite;
 }
-#card-view img{
+#baize-list li img, #discard-list li img{
     box-sizing: border-box;
     height: 100%;
-    max-width: 90%;
-    object-fit: contain;
-    border-radius: 10px;
-    mix-blend-mode: multiply;
+    width: 100%;
+}
+/*Le titre de chaque carte*/
+.side-card_title{
+    font-size: 2em;
 }
 .hide{
     display: none;
 }
-#card-view.selected img{
-    scale: 1.05;
-    border: 5px solid yellowgreen;
+/* MOBILE */
+@media only screen and (max-width : 431px) {
+    /*Largeur du contenant moins celle du bouton*/
+    #baize-list, #discard-list{
+        width: 90%;
+    }
+    #draw-baize, #draw-discard{
+        width: 10%;
+    }
+    /* Reculer la réserve et la défausse hors de l'écran, de la largeur de la liste, pour faire dépasser le bouton*/
+    #baize {
+        transform: translateX(90%);
+    }
+    #discard {
+        transform: translateX(-90%);
+    }
+    /*Carte : illustration et contenu en colonne*/
+    #card-view_card{
+        flex-direction: column;
+    }
+
 }
-/*II - MEDIA QUERIES*/
-
-/*1 - MOBILES VERTICAUX*/
-@media only screen and (max-width: 430px) {
+/* PETITES TABLETTES */
+@media only screen and (min-width : 431px) and (max-width : 999px){
+    #baize-list, #discard-list{
+        width: 95%;
+    }
+    #draw-baize, #draw-discard{
+        width: 5%;
+    }
+    #baize {
+        transform: translateX(95%);
+    }
+    #discard {
+        transform: translateX(-95%);
+    }
+    /*Carte : illustration et contenu en colonne*/
+    #card-view_card{
+        flex-direction: column;
+    }
 }
 
-
-/*2 - AUTRES*/
-@media only screen and (min-width : 430px) {
+/* DESKTOP */
+@media only screen and (min-width : 1000px) {
+    #baize-list, #discard-list{
+        width: 93%;
+    }
+    #draw-baize, #draw-discard{
+        width: 7%;
+    }
+    #baize {
+        left:66%;
+        transform: translateX(93%);
+    }
+    #discard {
+        right:66%;
+        transform: translateX(-93%);
+    }
+    /*Carte : illustration et contenu côte à côte*/
+    #card-view_card{
+        
+    }
 }
 
 /*
-body{
-    background-color: blueviolet;
-}
-main{
-    background-color: red;  
-}
-#baize{
-    background-color: orange;  
-}
-#baize-list{
-    background-color: green;
-}
-#card-view{
-    background-color: yellow;
-}
+#card-view{background-color: blueviolet;}
+#card-view_heading{background-color: blue;}
+#card-view_card{background-color: green;}
+#decisions{background-color: yellowgreen;}
 */
-
