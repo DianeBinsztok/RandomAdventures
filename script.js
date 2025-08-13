@@ -19,8 +19,6 @@ let cards = [];
 let deck = [];
 // Les cartes réservées
 let baize = [];
-// Les cartes défaussées
-//let discardedCards=[];
 
 
 // La carte courante : aucune carte n'est affichée au lancement du jeu
@@ -137,7 +135,6 @@ function setEventListeners(){
 }
 // TIRAGE : RASSEMBLE LES AUTRES FONCTIONS
 function draw(){
-    console.log("draw");
     if(!currentCard){
         currentCard = drawNewRandomCard(deck);
         handleDisplay();
@@ -173,7 +170,6 @@ function discardCurrentCard(){
 // AJOUTER LA CARTE COURANTE AU TAPIS DE RÉSERVE
 function storeOrDiscard(stackString){
     // placer la carte courante sur le tas "discard" ou le tas "baize"
-    console.log("baize.length : ", baize.length);
     if(stackString=="baize"){
         if(baize.length<3){
             displayCardOnDesignatedStack(currentCard, "baize");
@@ -206,26 +202,28 @@ function displayCardOnDesignatedStack(card, stackString){
     let newCardItemIllustrationImg = document.createElement("img");
     newCardItemIllustrationImg.setAttribute('src', card.illustrationImgUrl);
 
-    // Un bouton pour défausser la carte
-    let discardBtn = document.createElement("button");
-    discardBtn.classList.add("discard-stored-card_btn");
-    discardBtn.innerText = "🠔 Défausser";
-    discardBtn.id = card.id;
-    discardBtn.addEventListener("click", (event)=>{discardAStoredCard(event.target)})
+    // Le bouton pour défausser la carte (dans la pile #baise-list uniquement)
+    let discardFromBaizeBtn = document.createElement("button");
+    if(stackString == "baize"){
+        discardFromBaizeBtn.classList.add("discard-stored-card_btn");
+        discardFromBaizeBtn.innerText = "🠔 Défausser";
+        discardFromBaizeBtn.id = card.id;
+        discardFromBaizeBtn.addEventListener("click", (event)=>{discardAStoredCard(event.target)})
+    }
 
     // Et tout insérer dans l'item de liste
     newCardItem.appendChild(newCardItemTitle);
     newCardItem.appendChild(newCardItemContentImg);
     newCardItem.appendChild(newCardItemIllustrationImg);
-    newCardItem.appendChild(discardBtn);
-
-
+    if(stackString == "baize"){
+        newCardItem.appendChild(discardFromBaizeBtn);
+    }
+    
     // Et l'insérer à la liste
     if(stackString == "baize"){
         baizeList.appendChild(newCardItem);
     }else if(stackString == "discard"){
         discardList.appendChild(newCardItem);
-        console.log("discardList : ", discardList);
     }
 }
 // AFFICHAGE DES BOUTONS ET DE LA CARTE COURANTE - OU DU MESSAGE
@@ -291,7 +289,7 @@ function handleDisplay(){
     keepBtn.blur();
 }
 // SWIPE ET TAPOTEMENTS
-function handleTouchAndSwipes(cardView){
+function handleTouchAndSwipes(card){
 
     // Coordonnées de départ
     let startX = 0;
@@ -316,38 +314,26 @@ function handleTouchAndSwipes(cardView){
         const deltaX = endX - startX;
         const deltaY = endY - startY;
     
-        /* Si le seuil de détection n'est pas dépassé : c'est un tapotement. Le tapotement est l'équivalent d'un clic : l'eventlistener est déjà présent dans setEventListeners */
-        /*
-        if (Math.abs(deltaX) < swipeThreshold && Math.abs(deltaY) < swipeThreshold ){
-            console.log("tapotement");
-            draw();
-            return;
-        }
-        */
-    
         // Au swipe horizontal
         if (Math.abs(deltaX) > Math.abs(deltaY)) {
             // Movement positif sur l'axe X = swipe à droite ➞ RÉSERVER LA CARTE
             if (deltaX > 0) {
-                console.log("➞");
-                storeOrDiscard("baize");
-                toggleCurrentCardFullscreen("off");
+                if(currentCard){
+                    storeOrDiscard("baize");
+                }
             // Movement négatif sur l'axe X = swipe à gauche ➞ DÉFAUSSER LA CARTE COURANTE
             } else {
-                console.log("🠔");
-                storeOrDiscard("discard");
-                toggleCurrentCardFullscreen("off");
+                if(currentCard){
+                    storeOrDiscard("discard");
+                }
             }
+            toggleCurrentCardFullscreen("off");
         } 
         // Au swipe vertical
         else {
-            // Movement positif sur l'axe Y = swipe vers le bas ➞ TIRER UNE NOUVELLE CARTE SANS DÉFAUSSER LA PRÉCÉDENTE
+            // Movement positif sur l'axe Y = swipe vers le bas ➞ Tirer une nouvelle carte (s'il n'y a pas de carte courante)
             if (deltaY > 0) {
-                console.log("🠗");
                 draw();
-            // Movement négatif sur l'axe Y = swipe vers le haut ➞ pas d'action
-            } else {
-                console.log("🠕");
             }
         }
     });
