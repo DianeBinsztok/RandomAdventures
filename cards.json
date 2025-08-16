@@ -1,107 +1,301 @@
 [
     {
         "id":0,
-        "series":"",
+        "series":"En Terres Sauvages",
         "title":"La Meute du Chien Bleu",
         "contentImgUrl":"assets/img/cards/la-meute-du-chien-bleu.JPG",
-        "illustrationImgUrl":"assets/img/cards/la-meute-du-chien-bleu_illus.JPG"
+        "illustrationImgUrl":"assets/img/cards/la-meute-du-chien-bleu_illus.JPG",
+        "impressions":{
+            "text":"Une phalange d'hommes et de femmes en arme. Un dogue céruléen que tous traitent avec le plus grand respect",
+            "questions":[
+                "Quelle bonne raison auriez-vous de rejoindre la meute?"
+            ]
+        },
+        "details":{
+            "text":"Cette troupe de mercenaires fiables est dirigée par un immense dogue au poil bleu roi et à l'autorité incontestée. Il s'agit d'une des compagnies les plus réputées de la contrée. Personne n'a jamais vu le chien bleu parler, et les mauvais esprits soupçonnent son interprète de tirer les ficelles.",
+            "questions":[
+                "Quels sont les pouvoirs du chien bleu et d'où les tire-t-il?",
+                "Qui viendra à le remplacer lorsqu'il sera trop vieux pour diriger la meute?"
+            ]
+        }
     },
     {
         "id":1,
-        "series":"",
+        "series":"En Terres Sauvages",
         "title":"Yak-So, guide et chamane",
         "contentImgUrl":"assets/img/cards/yak-so-guide-et-chamane.JPG",
-        "illustrationImgUrl":"assets/img/cards/yak-so-guide-et-chamane_illus.JPG"
+        "illustrationImgUrl":"assets/img/cards/yak-so-guide-et-chamane_illus.JPG",
+        "impressions":{
+            "text":"Une femme qui porte en elle une grande mélancolie. Ses vêtements sont ceux d'une nomade constamment sur les routes.",
+            "questions":[
+                "À quoi servent les gri-gris et les talismans qu'elle porte aux poignets et au cou?"
+            ]
+        },
+        "details":{
+            "text":"Yak-So perd sa famille dans une attaque de monstres. Trois ans plus tard, elle exerce une terrible vengeance sur la tribu coupable. Elle passe un pacte avec Terraxus, le démon des vents nocturnes, et mène une armée de chasseurs possédés pour massacrer les monstres jusqu'au dernier. Pour le prix de cette alliance, Yak-So fait voeu de ne jamais passer deux nuits au même endroit.",
+            "questions":[
+                "Qui veut se venger d'elle?"
+            ]
+        }
     },
     {
         "id":2,
-        "series":"",
+        "series":"En Terres Sauvages",
         "title":"Chauves-souris écarlates",
         "contentImgUrl":"assets/img/cards/chauve-souris-ecarlates.JPG",
-        "illustrationImgUrl":"assets/img/cards/chauve-souris-ecarlates_illus.JPG"
+        "illustrationImgUrl":"assets/img/cards/chauve-souris-ecarlates_illus.JPG",
+        "impressions":{
+            "text":"Des cris suraigus résonnent dans la nuit. La lune est assombrie par une masse aux reflets carmin. La masse de chauves-souris éteint torches et chandelles. Leurs têtes sont bien trop humaines.",
+            "questions":[
+                "De qui reconnaissez-vous le visage?"
+            ]
+        },
+        "details":{
+            "text":"Ces chauves-souris à la robe couleur de sang hantent les terres sauvages depuis des siècles. Parfois, les Gnomelins en font l'élevage pour protéger leurs collines. Les peuples nomades parlent d'un temps d'avant leur apparition.",
+            "questions":[
+                "Quelle est leur origine? La Catastrophe? Une expérience contre-nature? Ou autre chose?",
+                "Pourquoi nichent-elles uniquement dans des ruines?"
+            ]
+        }
     },
     {
         "id":3,
-        "series":"",
+        "series":"En Terres Sauvages",
         "title":"Le démon Terraxus",
         "contentImgUrl":"assets/img/cards/le-demon-terraxus.JPG",
-        "illustrationImgUrl":"assets/img/cards/le-demon-terraxus_illus.JPG"
+        "illustrationImgUrl":"assets/img/cards/le-demon-terraxus_illus.JPG",
+        "impressions":{
+            "text":"Une phalange d'hommes et de femmes en arme. Un dogue céruléen que tous traitent avec le plus grad respect",
+            "questions":[
+                "Quelle bonne raison auriez-vous de rejoindre la meute?"
+            ]
+        },
+        "details":{
+            "text":"Cette troupe de mercenaires fiables est dirigée par un immense dogue au poil bleu roi et à l'autorité incontestée. Il s'agit d'une des compagnies les plus réputées de la contrée. Personne n'a jamais vu le chien bleu parler, et les mauvais esprits soupçonnent son interprète de tirer les ficelles.",
+            "questions":[
+                "Quels sont les pouvoirs du chien bleu et d'où les tire-t-il?",
+                "Qui viendra à le remplacer lorsqu'il sera trop vieux pour diriger la meute?"
+            ]
+        }
     },
     {
         "id":4,
-        "series":"",
+        "series":"En Terres Sauvages",
         "title":"Dulcinia la mule",
         "contentImgUrl":"assets/img/cards/dulcinia-la-mule.JPG",
-        "illustrationImgUrl":"assets/img/cards/dulcinia-la-mule_illus.JPG"
+        "illustrationImgUrl":"assets/img/cards/dulcinia-la-mule_illus.JPG",
+        "impressions":{
+            "text":"Une phalange d'hommes et de femmes en arme. Un dogue céruléen que tous traitent avec le plus grad respect",
+            "questions":[
+                "Quelle bonne raison auriez-vous de rejoindre la meute?"
+            ]
+        },
+        "details":{
+            "text":"Cette troupe de mercenaires fiables est dirigée par un immense dogue au poil bleu roi et à l'autorité incontestée. Il s'agit d'une des compagnies les plus réputées de la contrée. Personne n'a jamais vu le chien bleu parler, et les mauvais esprits soupçonnent son interprète de tirer les ficelles.",
+            "questions":[
+                "Quels sont les pouvoirs du chien bleu et d'où les tire-t-il?",
+                "Qui viendra à le remplacer lorsqu'il sera trop vieux pour diriger la meute?"
+            ]
+        }
     },
     {
         "id":5,
-        "series":"",
+        "series":"En Terres Sauvages",
         "title":"Le sorcier du givre",
         "contentImgUrl":"assets/img/cards/le-sorcier-du-givre.JPG",
-        "illustrationImgUrl":"assets/img/cards/le-sorcier-du-givre_illus.JPG"
+        "illustrationImgUrl":"assets/img/cards/le-sorcier-du-givre_illus.JPG",
+        "impressions":{
+            "text":"Une phalange d'hommes et de femmes en arme. Un dogue céruléen que tous traitent avec le plus grad respect",
+            "questions":[
+                "Quelle bonne raison auriez-vous de rejoindre la meute?"
+            ]
+        },
+        "details":{
+            "text":"Cette troupe de mercenaires fiables est dirigée par un immense dogue au poil bleu roi et à l'autorité incontestée. Il s'agit d'une des compagnies les plus réputées de la contrée. Personne n'a jamais vu le chien bleu parler, et les mauvais esprits soupçonnent son interprète de tirer les ficelles.",
+            "questions":[
+                "Quels sont les pouvoirs du chien bleu et d'où les tire-t-il?",
+                "Qui viendra à le remplacer lorsqu'il sera trop vieux pour diriger la meute?"
+            ]
+        }
     },
     {
         "id":6,
-        "series":"",
+        "series":"En Terres Sauvages",
         "title":"Bandits, bandits",
         "contentImgUrl":"assets/img/cards/bandits-bandits.JPG",
-        "illustrationImgUrl":"assets/img/cards/bandits-bandits_illus.JPG"
+        "illustrationImgUrl":"assets/img/cards/bandits-bandits_illus.JPG",
+        "impressions":{
+            "text":"Une phalange d'hommes et de femmes en arme. Un dogue céruléen que tous traitent avec le plus grad respect",
+            "questions":[
+                "Quelle bonne raison auriez-vous de rejoindre la meute?"
+            ]
+        },
+        "details":{
+            "text":"Cette troupe de mercenaires fiables est dirigée par un immense dogue au poil bleu roi et à l'autorité incontestée. Il s'agit d'une des compagnies les plus réputées de la contrée. Personne n'a jamais vu le chien bleu parler, et les mauvais esprits soupçonnent son interprète de tirer les ficelles.",
+            "questions":[
+                "Quels sont les pouvoirs du chien bleu et d'où les tire-t-il?",
+                "Qui viendra à le remplacer lorsqu'il sera trop vieux pour diriger la meute?"
+            ]
+        }
     },
     {
         "id":7,
-        "series":"",
+        "series":"En Terres Sauvages",
         "title":"Antipape, anti-tout",
         "contentImgUrl":"assets/img/cards/antipape-anti-tout.JPG",
-        "illustrationImgUrl":"assets/img/cards/antipape-anti-tout_illus.JPG"
+        "illustrationImgUrl":"assets/img/cards/antipape-anti-tout_illus.JPG",
+        "impressions":{
+            "text":"Une phalange d'hommes et de femmes en arme. Un dogue céruléen que tous traitent avec le plus grad respect",
+            "questions":[
+                "Quelle bonne raison auriez-vous de rejoindre la meute?"
+            ]
+        },
+        "details":{
+            "text":"Cette troupe de mercenaires fiables est dirigée par un immense dogue au poil bleu roi et à l'autorité incontestée. Il s'agit d'une des compagnies les plus réputées de la contrée. Personne n'a jamais vu le chien bleu parler, et les mauvais esprits soupçonnent son interprète de tirer les ficelles.",
+            "questions":[
+                "Quels sont les pouvoirs du chien bleu et d'où les tire-t-il?",
+                "Qui viendra à le remplacer lorsqu'il sera trop vieux pour diriger la meute?"
+            ]
+        }
     },
     {
         "id":8,
-        "series":"",
+        "series":"En Terres Sauvages",
         "title":"Bazar bizarre",
         "contentImgUrl":"assets/img/cards/bazar-bizarre.JPG",
-        "illustrationImgUrl":"assets/img/cards/bazar-bizarre_illus.JPG"
+        "illustrationImgUrl":"assets/img/cards/bazar-bizarre_illus.JPG",
+        "impressions":{
+            "text":"Une phalange d'hommes et de femmes en arme. Un dogue céruléen que tous traitent avec le plus grad respect",
+            "questions":[
+                "Quelle bonne raison auriez-vous de rejoindre la meute?"
+            ]
+        },
+        "details":{
+            "text":"Cette troupe de mercenaires fiables est dirigée par un immense dogue au poil bleu roi et à l'autorité incontestée. Il s'agit d'une des compagnies les plus réputées de la contrée. Personne n'a jamais vu le chien bleu parler, et les mauvais esprits soupçonnent son interprète de tirer les ficelles.",
+            "questions":[
+                "Quels sont les pouvoirs du chien bleu et d'où les tire-t-il?",
+                "Qui viendra à le remplacer lorsqu'il sera trop vieux pour diriger la meute?"
+            ]
+        }
     },
     {
         "id":9,
-        "series":"",
+        "series":"En Terres Sauvages",
         "title":"Ce soir dans votre ville!",
         "contentImgUrl":"assets/img/cards/ce-soir-dans-votre-ville.JPG",
-        "illustrationImgUrl":"assets/img/cards/ce-soir-dans-votre-ville_illus.JPG"
+        "illustrationImgUrl":"assets/img/cards/ce-soir-dans-votre-ville_illus.JPG",
+        "impressions":{
+            "text":"Une phalange d'hommes et de femmes en arme. Un dogue céruléen que tous traitent avec le plus grad respect",
+            "questions":[
+                "Quelle bonne raison auriez-vous de rejoindre la meute?"
+            ]
+        },
+        "details":{
+            "text":"Cette troupe de mercenaires fiables est dirigée par un immense dogue au poil bleu roi et à l'autorité incontestée. Il s'agit d'une des compagnies les plus réputées de la contrée. Personne n'a jamais vu le chien bleu parler, et les mauvais esprits soupçonnent son interprète de tirer les ficelles.",
+            "questions":[
+                "Quels sont les pouvoirs du chien bleu et d'où les tire-t-il?",
+                "Qui viendra à le remplacer lorsqu'il sera trop vieux pour diriger la meute?"
+            ]
+        }
     },
     {
         "id":10,
-        "series":"",
+        "series":"En Terres Sauvages",
         "title":"La tombe des bienheureux",
         "contentImgUrl":"assets/img/cards/la-tombe-des-bienheureux.JPG",
-        "illustrationImgUrl":"assets/img/cards/la-tombe-des-bienheureux_illus.JPG"
+        "illustrationImgUrl":"assets/img/cards/la-tombe-des-bienheureux_illus.JPG",
+        "impressions":{
+            "text":"Une phalange d'hommes et de femmes en arme. Un dogue céruléen que tous traitent avec le plus grad respect",
+            "questions":[
+                "Quelle bonne raison auriez-vous de rejoindre la meute?"
+            ]
+        },
+        "details":{
+            "text":"Cette troupe de mercenaires fiables est dirigée par un immense dogue au poil bleu roi et à l'autorité incontestée. Il s'agit d'une des compagnies les plus réputées de la contrée. Personne n'a jamais vu le chien bleu parler, et les mauvais esprits soupçonnent son interprète de tirer les ficelles.",
+            "questions":[
+                "Quels sont les pouvoirs du chien bleu et d'où les tire-t-il?",
+                "Qui viendra à le remplacer lorsqu'il sera trop vieux pour diriger la meute?"
+            ]
+        }
     },
     {
         "id":11,
-        "series":"",
+        "series":"En Terres Sauvages",
         "title":"Le cairn améthyste",
         "contentImgUrl":"assets/img/cards/le-cairn-amethyste.JPG",
-        "illustrationImgUrl":"assets/img/cards/le-cairn-amethyste_illus.JPG"
+        "illustrationImgUrl":"assets/img/cards/le-cairn-amethyste_illus.JPG",
+        "impressions":{
+            "text":"Une phalange d'hommes et de femmes en arme. Un dogue céruléen que tous traitent avec le plus grad respect",
+            "questions":[
+                "Quelle bonne raison auriez-vous de rejoindre la meute?"
+            ]
+        },
+        "details":{
+            "text":"Cette troupe de mercenaires fiables est dirigée par un immense dogue au poil bleu roi et à l'autorité incontestée. Il s'agit d'une des compagnies les plus réputées de la contrée. Personne n'a jamais vu le chien bleu parler, et les mauvais esprits soupçonnent son interprète de tirer les ficelles.",
+            "questions":[
+                "Quels sont les pouvoirs du chien bleu et d'où les tire-t-il?",
+                "Qui viendra à le remplacer lorsqu'il sera trop vieux pour diriger la meute?"
+            ]
+        }
     },
     {
         "id":12,
-        "series":"",
+        "series":"En Terres Sauvages",
         "title":"Le puits du destin",
         "contentImgUrl":"assets/img/cards/le-puits-du-destin.JPG",
-        "illustrationImgUrl":"assets/img/cards/le-puits-du-destin_illus.JPG"
+        "illustrationImgUrl":"assets/img/cards/le-puits-du-destin_illus.JPG",
+        "impressions":{
+            "text":"Une phalange d'hommes et de femmes en arme. Un dogue céruléen que tous traitent avec le plus grad respect",
+            "questions":[
+                "Quelle bonne raison auriez-vous de rejoindre la meute?"
+            ]
+        },
+        "details":{
+            "text":"Cette troupe de mercenaires fiables est dirigée par un immense dogue au poil bleu roi et à l'autorité incontestée. Il s'agit d'une des compagnies les plus réputées de la contrée. Personne n'a jamais vu le chien bleu parler, et les mauvais esprits soupçonnent son interprète de tirer les ficelles.",
+            "questions":[
+                "Quels sont les pouvoirs du chien bleu et d'où les tire-t-il?",
+                "Qui viendra à le remplacer lorsqu'il sera trop vieux pour diriger la meute?"
+            ]
+        }
     },
     {
         "id":13,
-        "series":"",
+        "series":"En Terres Sauvages",
         "title":"Les libres prairies",
         "contentImgUrl":"assets/img/cards/les-libres-prairies.JPG",
-        "illustrationImgUrl":"assets/img/cards/les-libres-prairies_illus.JPG"
+        "illustrationImgUrl":"assets/img/cards/les-libres-prairies_illus.JPG",
+        "impressions":{
+            "text":"Une phalange d'hommes et de femmes en arme. Un dogue céruléen que tous traitent avec le plus grad respect",
+            "questions":[
+                "Quelle bonne raison auriez-vous de rejoindre la meute?"
+            ]
+        },
+        "details":{
+            "text":"Cette troupe de mercenaires fiables est dirigée par un immense dogue au poil bleu roi et à l'autorité incontestée. Il s'agit d'une des compagnies les plus réputées de la contrée. Personne n'a jamais vu le chien bleu parler, et les mauvais esprits soupçonnent son interprète de tirer les ficelles.",
+            "questions":[
+                "Quels sont les pouvoirs du chien bleu et d'où les tire-t-il?",
+                "Qui viendra à le remplacer lorsqu'il sera trop vieux pour diriger la meute?"
+            ]
+        }
     },
     {
         "id":14,
-        "series":"",
+        "series":"En Terres Sauvages",
         "title":"Les monts griffus",
         "contentImgUrl":"assets/img/cards/les-monts-griffus.JPG",
-        "illustrationImgUrl":"assets/img/cards/les-monts-griffus_illus.JPG"
+        "illustrationImgUrl":"assets/img/cards/les-monts-griffus_illus.JPG",
+        "impressions":{
+            "text":"Une phalange d'hommes et de femmes en arme. Un dogue céruléen que tous traitent avec le plus grad respect",
+            "questions":[
+                "Quelle bonne raison auriez-vous de rejoindre la meute?"
+            ]
+        },
+        "details":{
+            "text":"Cette troupe de mercenaires fiables est dirigée par un immense dogue au poil bleu roi et à l'autorité incontestée. Il s'agit d'une des compagnies les plus réputées de la contrée. Personne n'a jamais vu le chien bleu parler, et les mauvais esprits soupçonnent son interprète de tirer les ficelles.",
+            "questions":[
+                "Quels sont les pouvoirs du chien bleu et d'où les tire-t-il?",
+                "Qui viendra à le remplacer lorsqu'il sera trop vieux pour diriger la meute?"
+            ]
+        }
     }
 ]
