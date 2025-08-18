@@ -1,4 +1,4 @@
-/assets/**
-/cards.json
-/script-old.js
-/styles-old.js
+/game/assets/**
+/game/cards.json
+.env
+vendor

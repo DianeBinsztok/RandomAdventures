@@ -15,11 +15,11 @@ let fullscreenBtn, closeFullscreenBtn;
 // - Les affichage "Empty", ou "Standby")
 let standbyObject = {
     "title":"Cliquez pour tirer une carte",
-    "illustrationImgUrl":"./assets/img/back.png"
+    "illustration":"back.png"
 };
 let emptyDeckObject = {
     "title":"Votre deck est vide",
-    "illustrationImgUrl":"./assets/img/empty.png"
+    "illustration":"empty.jpg"
 };
 
 /* CHARGEMENT DES CARTES AU DÉBUT */
@@ -74,7 +74,7 @@ function init(){
     cardView = document.querySelector("#card-view");
 
     /* II - CHARGER LES CARTES */
-    fetch('./cards.json')
+    fetch('../api/')
         .then(response => {
             if (!response.ok){
                 console.error("Erreur lors du chargement des cartes");
@@ -83,6 +83,7 @@ function init(){
             return response.json();
         })
         .then(data => {
+            console.log("data => ", data);
 
             // Copier le tableau reçu dans un nouveau tableau
             cards = [...data];
@@ -91,7 +92,6 @@ function init(){
 
             /* III - ACTIVER LES EVENTLISTENERS */
             setEventListeners();
-
 
             /* IV - AFFICHAGE */
             handleDisplay();
@@ -114,7 +114,7 @@ function setEventListeners(){
             // Éviter le scroll
             event.preventDefault();
             // Tirer une nouvelle carte
-            console.log("Tirer une nouvelle carte");
+            draw();
         }
     });
 
@@ -125,9 +125,6 @@ function setEventListeners(){
     keepBtn.addEventListener("click", ()=>{ storeOrDiscard("baize");});
     // BOUTON DÉFAUSSER : DÉFAUSSER LA CARTE COURANTE
     discardBtn.addEventListener("click", ()=>{storeOrDiscard("discard")});
-
-    // Version mobile : détecter les tapotements et swipe sur la carte
-    console.log("handleTouchAndSwipes");
 
     // DRAW BAIZE : LE BOUTON POUR AFFICHER LA RÉSERVE
     drawBaizeBtn.addEventListener("click", ()=>{
@@ -149,7 +146,6 @@ function setEventListeners(){
 // SWIPE ET TAPOTEMENTS
 function handleTouchAndSwipes(card){
 
-    console.log("card => ", card);
     // Coordonnées de départ
     let startX = 0;
     let startY = 0;

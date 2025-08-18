@@ -1,12 +1,14 @@
 // LA CARTE
 function renderCard(cardObject, emptyOrBack){
+console.log("cardObject.illustration => ", cardObject.illustration);
+console.log("emptyOrBack => ", emptyOrBack);
 
     // Les sous-sections : 
     // Impressions
     let impressionsSection="";
     // Détails
     let detailsSection="";
-
+    let illustration="";
 
   if(!emptyOrBack){
     // Les sous-sections : 
@@ -14,8 +16,11 @@ function renderCard(cardObject, emptyOrBack){
     impressionsSection = renderSubSection(cardObject.impressions, "Impressions");
     // Détails
     detailsSection = renderSubSection(cardObject.details, "Détails");
+    illustration = `./assets/img/cards/${cardObject.illustration}`;
+  }else{
+    illustration = `./assets/img/${cardObject.illustration}`;
   }
-
+  console.log(cardObject);
     return `
       <section class="card">
 
@@ -23,7 +28,7 @@ function renderCard(cardObject, emptyOrBack){
             <h2 class="card_heading_title">${cardObject.title}</h2>
         </div>
 
-        <img class="card_illustration" src="${cardObject.illustrationImgUrl}" alt=""/>
+        <img class="card_illustration" src="${illustration}" alt=""/>
 
         ${impressionsSection}
 
