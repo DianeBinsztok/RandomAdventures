@@ -1,0 +1,75 @@
+form{
+    width:80%;
+    padding:1rem;
+  }
+  div{
+    display:flex;
+    flex-direction:column;
+  }
+  .card_subsection, #card_heading{
+    margin:1rem 0;
+    padding:1rem;
+    border:1px solid teal;
+    border-radius:10px;
+  }
+  label, h3{
+    margin:1rem 0;
+    text-align:center;
+  }
+  
+  .add-question-btn, .save-card-btn, .save-question-btn, .edit-question-btn, .delete-question-btn{
+    padding:0.4rem 0.8rem;
+    width:fit-content;
+    align-self:center;
+    color:teal;
+    border:1px solid teal;
+    background-color:transparent;
+    border-radius:5px;
+  }
+  .add-question-btn{
+    border-radius:10px;
+    font-size:22px;
+  }
+  .add-question-btn:hover, .save-card-btn:hover{
+    align-self:center;
+    color:white;
+    background-color:teal;
+  }
+  .hide{
+    display:none;
+  }
+  /* Input de question */
+  .new-question{
+    display:flex;
+  }
+  /* La visibilité des boutons*/
+  /* TO BE SAVED : seul le bouton "Enregistrer" apparait*/
+  /* Le bouton "Enregistrer" */
+  .new-question.to-be-saved .save-question-btn{
+    display:block;
+  }
+  /* Le bouton "Modifier" */
+  .new-question.to-be-saved .edit-question-btn {
+    display:none;
+  }
+  /* Le bouton "Supprimer" */
+  .new-question.to-be-saved .delete-question-btn {
+    display:block;
+  }
+  
+  /* SAVED : le bouton "enregistrer disparait, les boutons "Modifier" et "Supprimer" apparaissent */
+  .new-question.saved input{
+    border:none;
+  }
+  /* Le bouton "Enregistrer" */
+  .new-question.saved .save-question-btn{
+    display:none;
+  }
+  /* Le bouton "Modifier" */
+  .new-question.saved .edit-question-btn {
+    display:block;
+  }
+  /* Le bouton "Supprimer" */
+  .new-question.saved .delete-question-btn {
+    display:block;
+  }

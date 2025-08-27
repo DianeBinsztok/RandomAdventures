@@ -4,7 +4,6 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 // Le chemin vers le fichier .env
-var_dump(file_exists(__DIR__ . '/../.env'));
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 
 // Charger les valeurs
