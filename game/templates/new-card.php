@@ -1,17 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="new-card-form-styles.css">
+<?php require ("partials/header.php"); ?>
 
-    <title>Random Adventures - Ajouter une carte</title>
-</head>
-<body>
-    <header>
-        <h1>Random Adventures</h1>
-    </header>
-    <main>
         <h2>Ajoutez une nouvelle carte</h2>
         <form action="../api/process-new-card.php" method="post" id="new-card">
 
@@ -52,10 +40,4 @@
                 <input class="save-card-btn" type="submit" value="Enregistrer" />
             </div>
         </form>
-    </main>
-    <footer>
-        <p>Jeu de carte écrit et conçu par <a href="https://acritarche.com/">Acritarche</a></p>
-        <script type="module" src="add-card-script.js"></script>
-    </footer>
-</body>
-</html>
+<?php require ("partials/footer.php"); ?>

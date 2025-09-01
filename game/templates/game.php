@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Random Adventures</title>
-</head>
-<body>
-    <header>
-        <h1>Random Adventures</h1>
-    </header>
-    <main>
+
+<?php require ("partials/header.php"); ?>
+
         <button id="close-fullscreen-btn" class="hide">X</button>
         <section id="baize">
             <button id="draw-baize">
@@ -48,12 +38,4 @@
             <button id="keep-in-deck-btn" class="button hide">Réserver ➞</button>
             <button id="reset-deck" class="button hide">Recommencer une partie</button>
         </div>
-    </main>
-    <footer>
-        <p>Jeu de carte écrit et conçu par <a href="https://acritarche.com/">Acritarche</a></p>
-        <script type="module" src="script.js"></script>
-        <script type="module" src="display-svg.js"></script>
-        <script type="module" src="templates.js"></script>
-    </footer>
-</body>
-</html>
+<?php require ("partials/footer.php"); ?>

@@ -1,15 +1,15 @@
 <?php
-
 // Charger la librairie : 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
 // Le chemin vers le fichier .env
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '../..');
 
 // Charger les valeurs
 $dotenv->load();
 
 // Utiliser les variable d'environnement pour accéder à la BDD
+
 $dsn = $_ENV['DB'];
 $username = $_ENV['DBUSER'];
 $password = $_ENV['DBPASSWORD'];

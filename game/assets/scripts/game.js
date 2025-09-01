@@ -19,7 +19,7 @@ let standbyObject = {
 };
 let emptyDeckObject = {
     "title":"Votre deck est vide",
-    "illustration":"empty.jpg"
+    "illustration":"empty.png"
 };
 
 /* CHARGEMENT DES CARTES AU DÉBUT */
@@ -74,7 +74,7 @@ function init(){
     cardView = document.querySelector("#card-view");
 
     /* II - CHARGER LES CARTES */
-    fetch('../api/')
+    fetch('http://api.randomadventures.local/')
         .then(response => {
             if (!response.ok){
                 console.error("Erreur lors du chargement des cartes");
@@ -95,7 +95,6 @@ function init(){
 
             /* IV - AFFICHAGE */
             handleDisplay();
-
         })
     .catch(error => console.error(error));
 }
@@ -151,10 +150,11 @@ function handleTouchAndSwipes(card){
     let startY = 0;
 
     // Le seuil de mouvement du doigt détectable : 50px
-    const swipeThreshold = 50;
+    //const swipeThreshold = 50;
     
     // Au début du toucher
     card.addEventListener("touchstart", (event) => {
+
         // Enregistrer les coordonées touchées, sur les deux axes
         startX = event.touches[0].clientX;
         startY = event.touches[0].clientY;
@@ -281,7 +281,7 @@ function handleDisplay(){
     keepBtn.classList.remove("active");
 
     // Changer l'icône sur le bouton qui déroule le tapis
-    //changeBaizeDrawerIconToShowNumberOfStoredCards(baize, drawBaizeBtn);
+    changeBaizeDrawerIconToShowNumberOfStoredCards(baize, drawBaizeBtn);
 
     // Retirer le focus des boutons pour éviter son déclenchement au spacebar
     cardView.blur();
@@ -385,10 +385,9 @@ function discardAStoredCard(discardBtn){
 // RESET
 function resetGame(){
     deck = [...cards];
+    baize = [];
     currentCard = null;
     baizeList.innerHTML="";
     discardList.innerHTML="";
-    console.log("resetGame");
+    handleDisplay();
 }
-
-export {discardAStoredCard};

@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Fichiers réels : laisser passer
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Tout le reste vers public/index.php
+RewriteRule ^ index.php [QSA,L]

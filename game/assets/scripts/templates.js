@@ -1,7 +1,5 @@
 // LA CARTE
 function renderCard(cardObject, emptyOrBack){
-console.log("cardObject.illustration => ", cardObject.illustration);
-console.log("emptyOrBack => ", emptyOrBack);
 
     // Les sous-sections : 
     // Impressions
@@ -20,7 +18,6 @@ console.log("emptyOrBack => ", emptyOrBack);
   }else{
     illustration = `./assets/img/${cardObject.illustration}`;
   }
-  console.log(cardObject);
     return `
       <section class="card">
 

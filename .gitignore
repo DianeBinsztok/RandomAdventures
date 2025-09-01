@@ -1,4 +1,5 @@
-/game/assets/**
+/game/assets/img
 /game/cards.json
+/api/.env
 .env
 vendor

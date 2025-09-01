@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# S'il existe un fichier ou répertoire, on le sert tel quel
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Sinon, on passe au routeur
+RewriteRule ^ index.php [L]
